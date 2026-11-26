@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUDIO ENGINE // מחולל אתרים</title>
+    <title>STUDIO ENGINE // מחולל אתרים בענן</title>
 
-    <!-- Google Fonts: Heebo, Rubik, Frank Ruhl Libre -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@700;800;900&family=Rubik:wght@600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Heebo"', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['"Heebo"', 'sans-serif'] },
                     colors: {
                         obsidian: '#090807',
                         espresso: '#12100E',
@@ -32,33 +27,20 @@
     </script>
 
     <style>
-        * {
-            font-family: 'Heebo', sans-serif !important;
-            letter-spacing: -0.02em;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #090807;
-            color: #F7F4EF;
-            font-weight: 800;
-            overflow-x: hidden;
-        }
-
+        * { font-family: 'Heebo', sans-serif !important; letter-spacing: -0.02em; box-sizing: border-box; }
+        body { background-color: #090807; color: #F7F4EF; font-weight: 800; overflow-x: hidden; }
         .studio-ambient-bg {
             background-color: #090807;
             background-image:
                 radial-gradient(circle at 80% 10%, rgba(212, 190, 162, 0.08) 0%, transparent 45%),
                 radial-gradient(circle at 15% 85%, rgba(212, 190, 162, 0.06) 0%, transparent 50%);
         }
-
         .glass-studio-header {
             background: rgba(14, 12, 10, 0.88);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border-bottom: 1px solid rgba(212, 190, 162, 0.16);
         }
-
         .glass-panel {
             background: linear-gradient(165deg, rgba(22, 19, 16, 0.92) 0%, rgba(14, 12, 10, 0.96) 100%);
             backdrop-filter: blur(20px);
@@ -67,7 +49,6 @@
             border-radius: 1.5rem;
             box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.85);
         }
-
         .studio-field {
             background: #090807;
             border: 1px solid rgba(212, 190, 162, 0.16);
@@ -75,18 +56,12 @@
             font-weight: 800;
             transition: all 0.2s ease;
         }
-
         .studio-field:focus {
             outline: none;
             border-color: #D4BEA2;
             box-shadow: 0 0 0 3px rgba(212, 190, 162, 0.16);
         }
-
-        .studio-field::placeholder {
-            color: #6E655C;
-            font-weight: 700;
-        }
-
+        .studio-field::placeholder { color: #6E655C; font-weight: 700; }
         .iphone-17-pro-frame {
             width: 396px;
             max-width: 100%;
@@ -94,16 +69,12 @@
             max-height: calc(100vh - 125px);
             border-radius: 52px;
             border: 11px solid #1E1B18;
-            box-shadow:
-                0 0 0 1.5px rgba(212, 190, 162, 0.28),
-                0 35px 80px -15px rgba(0, 0, 0, 0.95),
-                inset 0 0 20px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 0 0 1.5px rgba(212, 190, 162, 0.28), 0 35px 80px -15px rgba(0, 0, 0, 0.95), inset 0 0 20px rgba(0, 0, 0, 0.9);
             overflow: hidden;
             position: relative;
             background: #090807;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .desktop-browser-frame {
             width: 100%;
             height: calc(100vh - 125px);
@@ -118,699 +89,502 @@
             flex-direction: column;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #090807;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2C2621;
-            border-radius: 999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #D4BEA2;
-        }
-
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #090807; }
+        ::-webkit-scrollbar-thumb { background: #2C2621; border-radius: 999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4BEA2; }
         @keyframes toastRise {
             0% { transform: translate(-50%, 24px); opacity: 0; }
             100% { transform: translate(-50%, 0); opacity: 1; }
         }
-        .toast-visible {
-            animation: toastRise 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes botPop {
-            0% { transform: scale(0.92) translateY(12px); opacity: 0; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
-        }
-        .bot-window-open {
-            animation: botPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        .toast-visible { animation: toastRise 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col studio-ambient-bg">
 
-    <!-- 1. TOP STUDIO HEADER -->
-    <header class="glass-studio-header sticky top-0 z-40 px-4 lg:px-8 py-3">
-        <div class="max-w-[1680px] mx-auto flex flex-wrap items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-2xl bg-champagne text-obsidian flex items-center justify-center shadow-[0_0_25px_rgba(212,190,162,0.28)] shrink-0">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                </div>
-                <div>
-                    <h1 class="text-base sm:text-xl font-black text-white tracking-tight leading-none">
-                        STUDIO ENGINE <span class="text-champagne">// מחולל אתרים</span>
-                    </h1>
-                    <p class="text-[11px] font-bold text-stone-400 mt-1 hidden sm:block">
-                        עיצוב מלא בהתאמה אישית, תצוגה חיה והעברה אוטומטית לוואטסאפ
-                    </p>
-                </div>
-            </div>
+    <!-- LOADING OVERLAY FOR SHORT LINK (?s=...) -->
+    <div id="cloudLoaderScreen" class="hidden fixed inset-0 z-50 bg-[#090807] flex-col items-center justify-center gap-3">
+        <div class="w-10 h-10 rounded-full border-4 border-champagne/25 border-t-champagne animate-spin"></div>
+        <div class="text-sm font-black text-champagne">טוען את האתר מהענן...</div>
+    </div>
 
-            <div class="flex lg:hidden items-center bg-obsidian p-1 rounded-full border border-champagne/20">
-                <button id="mobBtnEdit" onclick="setMobileScreen('edit')"
-                        class="px-4 py-1.5 rounded-full text-xs font-black bg-champagne text-obsidian transition cursor-pointer">
-                    בנייה ועיצוב
-                </button>
-                <button id="mobBtnPreview" onclick="setMobileScreen('preview')"
-                        class="px-4 py-1.5 rounded-full text-xs font-extrabold text-stone-400 hover:text-white transition cursor-pointer">
-                    תצוגה חיה
-                </button>
-            </div>
+    <!-- FULLSCREEN STANDALONE VIEWER (ACTIVATED WHEN OPENING ?s=slug) -->
+    <iframe id="standaloneLiveViewer" title="אתר העסק" class="hidden fixed inset-0 w-full h-full border-0 z-50 bg-[#090807]"></iframe>
 
-            <div class="hidden xl:flex items-center gap-2 bg-obsidian/90 p-1.5 rounded-full border border-champagne/20">
-                <button id="btnViewMobile" onclick="setViewportMode('mobile')"
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-champagne text-obsidian text-xs font-black transition cursor-pointer">
-                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
-                        <rect x="7" y="2" width="10" height="20" rx="2.5"/>
-                        <path d="M12 18h.01"/>
-                    </svg>
-                    <span>תצוגת אייפון</span>
-                </button>
+    <!-- STUDIO BUILDER SHELL -->
+    <div id="studioBuilderShell" class="min-h-screen flex flex-col">
 
-                <button id="btnViewDesktop" onclick="setViewportMode('desktop')"
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer">
-                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
-                        <rect x="2" y="3" width="20" height="14" rx="2.5"/>
-                        <path d="M8 21h8M12 17v4"/>
-                    </svg>
-                    <span>מסך מלא</span>
-                </button>
-            </div>
-
-            <div class="flex items-center gap-2 sm:gap-2.5">
-                <button onclick="openStudioInquiryModal()"
-                        class="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-champagne hover:bg-champagneHover text-obsidian text-xs sm:text-sm font-black shadow-[0_0_25px_rgba(212,190,162,0.35)] transition cursor-pointer">
-                    <span>הזמן את האתר לוואטסאפ</span>
-                    <span>&larr;</span>
-                </button>
-
-                <button onclick="exportAndDownloadHTML()"
-                        class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2.5 rounded-full bg-espresso hover:bg-white/10 border border-champagne/30 text-xs font-black text-champagne transition cursor-pointer">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
-                    </svg>
-                    <span class="hidden sm:inline">ייצוא קובץ</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- 2. MAIN SPLIT WORKSPACE -->
-    <main class="flex-1 max-w-[1680px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-5 p-3 sm:p-6">
-
-        <!-- RIGHT SIDEBAR -->
-        <aside id="controlSidebar" class="lg:col-span-5 flex flex-col gap-4 lg:max-h-[calc(100vh-92px)] lg:overflow-y-auto lg:pl-2 pb-16">
-
-            <div class="glass-panel p-2 grid grid-cols-4 gap-1.5 sticky top-0 z-20">
-                <button type="button" onclick="activateControlTab('requests')" id="tab-btn-requests"
-                        class="ctrl-tab py-2.5 px-2 rounded-xl bg-champagne text-obsidian text-xs font-black transition cursor-pointer text-center">
-                    בקשות אתר
-                </button>
-                <button type="button" onclick="activateControlTab('presets')" id="tab-btn-presets"
-                        class="ctrl-tab py-2.5 px-2 rounded-xl text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer text-center">
-                    תבניות
-                </button>
-                <button type="button" onclick="activateControlTab('brand')" id="tab-btn-brand"
-                        class="ctrl-tab py-2.5 px-2 rounded-xl text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer text-center">
-                    לוגו ועיצוב
-                </button>
-                <button type="button" onclick="activateControlTab('menu')" id="tab-btn-menu"
-                        class="ctrl-tab py-2.5 px-2 rounded-xl text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer text-center">
-                    תפריט ומשלוחים
-                </button>
-            </div>
-
-            <!-- TAB 0: CLIENT REQUESTS & LEAD FORM -->
-            <div id="tab-panel-requests" class="ctrl-panel space-y-4">
-                <div class="glass-panel p-5 space-y-4 border-champagne/30">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-base font-black text-white">מחולל אתר לפי בקשות הלקוח</h2>
-                        <span class="px-2.5 py-1 rounded-full bg-champagne/15 text-champagne text-[11px] font-black">בנייה חיה</span>
+        <!-- 1. TOP STUDIO HEADER -->
+        <header class="glass-studio-header sticky top-0 z-40 px-4 lg:px-8 py-3">
+            <div class="max-w-[1680px] mx-auto flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-champagne text-obsidian flex items-center justify-center shadow-[0_0_25px_rgba(212,190,162,0.28)] shrink-0">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
                     </div>
-
-                    <p class="text-xs font-bold text-stone-300 leading-relaxed">
-                        תאר איך האתר של העסק שלך צריך להיראות וצרף לוגו — המנוע יבנה מיד טיוטה חיה בתצוגה משמאל:
-                    </p>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">שם העסק שלך</label>
-                            <input type="text" id="reqBizName" placeholder="לדוגמה: בורגר סטיישן"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                        </div>
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">תחום העסק</label>
-                            <select id="reqNiche" class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm">
-                                <option value="restaurant">מסעדה / המבורגריה / בית קפה</option>
-                                <option value="barber">מספרה / ברברשופ</option>
-                                <option value="fitness">מאמן כושר / סטודיו</option>
-                                <option value="aesthetic">קוסמטיקה / אסתטיקה / בוטיק</option>
-                            </select>
-                        </div>
-                    </div>
-
                     <div>
-                        <label class="block text-xs font-black text-stone-300 mb-1.5">הלוגו של העסק (אופציונלי)</label>
-                        <label class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-white/5 border border-dashed border-champagne/40 text-xs font-black text-champagne flex items-center justify-center gap-2 cursor-pointer transition">
-                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 4v11M8 8l4-4 4 4"/>
-                            </svg>
-                            <span id="reqLogoFileLabel">העלה תמונת לוגו מהטלפון / מחשב</span>
-                            <input type="file" accept="image/*" onchange="handleLogoFileUpload(event)" class="hidden" />
-                        </label>
+                        <h1 class="text-base sm:text-xl font-black text-white tracking-tight leading-none">
+                            STUDIO ENGINE <span class="text-champagne">// CLOUD SaaS</span>
+                        </h1>
+                        <p class="text-[11px] font-bold text-emerald-400 mt-1 hidden sm:flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+                            <span>מחובר לענן Supabase • קישורים קצרים פעילים</span>
+                        </p>
                     </div>
+                </div>
 
-                    <div>
-                        <label class="block text-xs font-black text-stone-300 mb-1.5">מה חשוב שיופיע באתר? (בקשות מיוחדות)</label>
-                        <textarea id="reqPromptText" rows="3"
-                                  placeholder="לדוגמה: עיצוב בהיר ונקי, אזור משלוחים והזמנת שולחן, הדגשת מבצע 20% הנחה בהזמנה ראשונה..."
-                                  class="studio-field w-full px-3.5 py-2.5 rounded-xl text-xs leading-relaxed"></textarea>
-                    </div>
-
-                    <div class="flex flex-wrap gap-2">
-                        <button type="button" onclick="applyQuickRequestChip('יוקרתי שחור-זהב, הזמנות שולחן ומשלוחים מהירים')"
-                                class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-champagne/20 border border-champagne/20 text-[11px] font-bold text-champagne cursor-pointer transition">
-                            + שחור-זהב יוקרתי
-                        </button>
-                        <button type="button" onclick="applyQuickRequestChip('עיצוב בהיר ונקי בגווני שמנת, מראה בוטיק אלגנטי')"
-                                class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-champagne/20 border border-champagne/20 text-[11px] font-bold text-champagne cursor-pointer transition">
-                            + בהיר ונקי (Light)
-                        </button>
-                        <button type="button" onclick="applyQuickRequestChip('מבצע היכרות 20% הנחה ללקוחות חדשים שמגיעים מהאתר')"
-                                class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-champagne/20 border border-champagne/20 text-[11px] font-bold text-champagne cursor-pointer transition">
-                            + מבצע 20% הנחה
-                        </button>
-                    </div>
-
-                    <button type="button" onclick="generateSiteFromRequests()"
-                            class="w-full py-3.5 rounded-full bg-champagne hover:bg-champagneHover text-obsidian text-sm font-black shadow-[0_0_25px_rgba(212,190,162,0.3)] transition cursor-pointer">
-                        בנה לי את האתר עכשיו לפי הבקשות &larr;
+                <div class="flex lg:hidden items-center bg-obsidian p-1 rounded-full border border-champagne/20">
+                    <button id="mobBtnEdit" onclick="setMobileScreen('edit')"
+                            class="px-4 py-1.5 rounded-full text-xs font-black bg-champagne text-obsidian transition cursor-pointer">
+                        עריכה
+                    </button>
+                    <button id="mobBtnPreview" onclick="setMobileScreen('preview')"
+                            class="px-4 py-1.5 rounded-full text-xs font-extrabold text-stone-400 hover:text-white transition cursor-pointer">
+                        תצוגה חיה
                     </button>
                 </div>
 
-                <div class="glass-panel p-5 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-base font-black text-white">מקום לפניות והזמנת אתר מותאם</h2>
-                        <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-[11px] font-black">150 ₪ חד-פעמי</span>
+                <div class="hidden xl:flex items-center gap-2 bg-obsidian/90 p-1.5 rounded-full border border-champagne/20">
+                    <button id="btnViewMobile" onclick="setViewportMode('mobile')"
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-champagne text-obsidian text-xs font-black transition cursor-pointer">
+                        <span>תצוגת אייפון</span>
+                    </button>
+                    <button id="btnViewDesktop" onclick="setViewportMode('desktop')"
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer">
+                        <span>מסך מלא</span>
+                    </button>
+                </div>
+
+                <!-- CLOUD SAVE & SHORT LINK BUTTONS -->
+                <div class="flex items-center gap-2 sm:gap-2.5">
+                    <button onclick="openShortLinkInNewTab()"
+                            class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2.5 rounded-full bg-espresso hover:bg-white/10 border border-champagne/30 text-xs font-black text-champagne transition cursor-pointer">
+                        <span>פתח אתר חי &#8599;</span>
+                    </button>
+
+                    <button id="btnSaveCloudTop" onclick="saveSiteToSupabaseAndCopy()"
+                            class="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-obsidian text-xs sm:text-sm font-black shadow-[0_0_25px_rgba(16,185,129,0.35)] transition cursor-pointer">
+                        <span>שמור והעתק קישור קצר</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. MAIN SPLIT WORKSPACE -->
+        <main class="flex-1 max-w-[1680px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-5 p-3 sm:p-6">
+
+            <!-- RIGHT SIDEBAR -->
+            <aside id="controlSidebar" class="lg:col-span-5 flex flex-col gap-4 lg:max-h-[calc(100vh-92px)] lg:overflow-y-auto lg:pl-2 pb-16">
+
+                <div class="glass-panel p-2 grid grid-cols-4 gap-1.5 sticky top-0 z-20">
+                    <button type="button" onclick="activateControlTab('requests')" id="tab-btn-requests"
+                            class="ctrl-tab py-2.5 px-2 rounded-xl bg-champagne text-obsidian text-xs font-black transition cursor-pointer text-center">
+                        קישור קצר
+                    </button>
+                    <button type="button" onclick="activateControlTab('presets')" id="tab-btn-presets"
+                            class="ctrl-tab py-2.5 px-2 rounded-xl text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer text-center">
+                        פרטים ושעות
+                    </button>
+                    <button type="button" onclick="activateControlTab('brand')" id="tab-btn-brand"
+                            class="ctrl-tab py-2.5 px-2 rounded-xl text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer text-center">
+                        עיצוב ולוגו
+                    </button>
+                    <button type="button" onclick="activateControlTab('menu')" id="tab-btn-menu"
+                            class="ctrl-tab py-2.5 px-2 rounded-xl text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer text-center">
+                        תפריט ומשלוחים
+                    </button>
+                </div>
+
+                <!-- TAB 0: CLOUD SHORT LINK PUBLISHER & QUICK BUILDER -->
+                <div id="tab-panel-requests" class="ctrl-panel space-y-4">
+                    <div class="glass-panel p-5 space-y-4 border-emerald-500/35">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-base font-black text-white">פרסום בענן והפקת קישור קצר</h2>
+                            <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-[11px] font-black">Supabase Cloud</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-black text-stone-300 mb-1.5">שם הקישור הקצר באנגלית (Slug)</label>
+                            <div class="flex items-center gap-2" dir="ltr">
+                                <span class="text-xs font-mono text-stone-400 shrink-0">?s=</span>
+                                <input type="text" id="fldSiteSlug" value="kairo" placeholder="burger-station" oninput="updateShortUrlPreview()"
+                                       class="studio-field flex-1 px-3.5 py-2.5 rounded-xl text-sm font-mono text-emerald-300 text-left" />
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-xs font-black text-stone-300">הקישור הקצר והנקי ללקוח:</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="liveUrlOutputBox" readonly dir="ltr"
+                                       class="studio-field flex-1 px-3 py-2.5 rounded-xl text-xs font-mono text-emerald-300 text-left" />
+                                <button type="button" id="btnSaveCloudCard" onclick="saveSiteToSupabaseAndCopy()"
+                                        class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-obsidian text-xs font-black cursor-pointer shrink-0">
+                                    שמור והעתק
+                                </button>
+                            </div>
+                            <p class="text-[11px] font-bold text-stone-400">
+                                לעריכה חוזרת בעתיד, הוסף <span class="font-mono text-champagne">&amp;edit=1</span> לסוף הקישור.
+                            </p>
+                        </div>
                     </div>
 
-                    <form onsubmit="sendStudioLeadToWhatsApp(event)" class="space-y-3">
+                    <div class="glass-panel p-5 space-y-4 border-champagne/30">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-base font-black text-white">בנייה מהירה לפי בקשות העסק</h2>
+                            <span class="px-2.5 py-1 rounded-full bg-champagne/15 text-champagne text-[11px] font-black">התאמה אוטומטית</span>
+                        </div>
+
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-xs font-black text-stone-300 mb-1">שם מלא</label>
-                                <input type="text" id="leadName" required placeholder="ישראל ישראלי"
+                                <label class="block text-xs font-black text-stone-300 mb-1.5">שם העסק</label>
+                                <input type="text" id="reqBizName" placeholder="לדוגמה: בורגר סטיישן"
                                        class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
                             </div>
                             <div>
-                                <label class="block text-xs font-black text-stone-300 mb-1">טלפון לחזרה</label>
-                                <input type="tel" id="leadPhone" required dir="ltr" placeholder="050-0000000"
+                                <label class="block text-xs font-black text-stone-300 mb-1.5">תחום העסק</label>
+                                <select id="reqNiche" class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm">
+                                    <option value="restaurant">מסעדה / המבורגריה / בית קפה</option>
+                                    <option value="barber">מספרה / ברברשופ</option>
+                                    <option value="fitness">מאמן כושר / סטודיו</option>
+                                    <option value="aesthetic">קוסמטיקה / אסתטיקה / בוטיק</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-black text-stone-300 mb-1.5">בקשות סגנון ותוכן</label>
+                            <textarea id="reqPromptText" rows="2"
+                                      placeholder="לדוגמה: עיצוב בהיר יוקרתי, מבצע 20% הנחה להזמנות מהאתר..."
+                                      class="studio-field w-full px-3.5 py-2.5 rounded-xl text-xs leading-relaxed"></textarea>
+                        </div>
+
+                        <button type="button" onclick="generateSiteFromRequests()"
+                                class="w-full py-3.5 rounded-full bg-champagne hover:bg-champagneHover text-obsidian text-sm font-black shadow-[0_0_25px_rgba(212,190,162,0.3)] transition cursor-pointer">
+                            בנה טיוטה והכן לשמירה בענן &larr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB 1: PRESETS, OPENING HOURS & CONTACT -->
+                <div id="tab-panel-presets" class="ctrl-panel hidden space-y-4">
+                    <div class="glass-panel p-5 space-y-4">
+                        <h2 class="text-base font-black text-white">תבנית בסיס לפי נישה</h2>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <button type="button" onclick="loadPreset('restaurant')" id="card-preset-restaurant"
+                                    class="preset-card p-3.5 rounded-2xl border-2 border-champagne bg-champagne/15 text-right transition cursor-pointer">
+                                <div class="text-xs font-black text-white">מסעדת שף / אוכל</div>
+                            </button>
+                            <button type="button" onclick="loadPreset('barber')" id="card-preset-barber"
+                                    class="preset-card p-3.5 rounded-2xl border border-champagne/15 bg-obsidian hover:border-champagne/50 text-right transition cursor-pointer">
+                                <div class="text-xs font-black text-white">ברברשופ בוטיק</div>
+                            </button>
+                            <button type="button" onclick="loadPreset('fitness')" id="card-preset-fitness"
+                                    class="preset-card p-3.5 rounded-2xl border border-champagne/15 bg-obsidian hover:border-champagne/50 text-right transition cursor-pointer">
+                                <div class="text-xs font-black text-white">מאמן כושר / סטודיו</div>
+                            </button>
+                            <button type="button" onclick="loadPreset('aesthetic')" id="card-preset-aesthetic"
+                                    class="preset-card p-3.5 rounded-2xl border border-champagne/15 bg-obsidian hover:border-champagne/50 text-right transition cursor-pointer">
+                                <div class="text-xs font-black text-white">אסתטיקה / בוטיק</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-5 space-y-4 border-champagne/30">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-base font-black text-white">שעות פעילות, כתובת ו-Waze</h2>
+                            <span class="px-2.5 py-1 rounded-full bg-champagne/15 text-champagne text-[11px] font-black">מוצג באתר</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-black text-stone-300 mb-1.5">ימי א׳–ה׳</label>
+                                <input type="text" id="fldHoursWeekdays" placeholder="12:00 – 23:30" oninput="handleFieldInput()"
+                                       class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
+                            </div>
+                            <div>
+                                <label class="block text-xs font-black text-stone-300 mb-1.5">יום שישי / מוצ״ש</label>
+                                <input type="text" id="fldHoursWeekend" placeholder="ו׳ 11:00–16:00 | ש׳ 20:00–00:00" oninput="handleFieldInput()"
+                                       class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-black text-stone-300 mb-1.5">כתובת מלאה (מחוברת ל-Waze)</label>
+                                <input type="text" id="fldAddress" oninput="handleFieldInput()"
+                                       class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
+                            </div>
+                            <div>
+                                <label class="block text-xs font-black text-stone-300 mb-1.5">מספר וואטסאפ העסק (972...)</label>
+                                <input type="tel" id="fldWhatsapp" dir="ltr" placeholder="972501234567" oninput="handleFieldInput()"
                                        class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm text-left" />
                             </div>
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1">הערות נוספות / קישור לאינסטגרם של העסק</label>
-                            <input type="text" id="leadInsta" placeholder="@your_business_page"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                        </div>
-
-                        <button type="submit"
-                                class="w-full py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-obsidian text-sm font-black shadow-lg transition cursor-pointer">
-                            שלח פנייה + הטיוטה שבניתי לוואטסאפ &larr;
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- TAB 1: PRESETS & CONTACT -->
-            <div id="tab-panel-presets" class="ctrl-panel hidden space-y-4">
-                <div class="glass-panel p-5 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-base font-black text-white">תבנית מוכנה בלחיצה</h2>
-                        <span class="px-2.5 py-1 rounded-full bg-champagne/15 text-champagne text-[11px] font-black">4 נישות רווחיות</span>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <button type="button" onclick="loadPreset('restaurant')" id="card-preset-restaurant"
-                                class="preset-card p-4 rounded-2xl border-2 border-champagne bg-champagne/15 text-right transition cursor-pointer">
-                            <div class="text-sm font-black text-white">מסעדת שף / אוכל</div>
-                            <div class="text-xs font-extrabold text-champagne mt-1">KAIRO | קאירו — תפריט, שולחן ומשלוחים</div>
-                        </button>
-
-                        <button type="button" onclick="loadPreset('barber')" id="card-preset-barber"
-                                class="preset-card p-4 rounded-2xl border border-champagne/15 bg-obsidian hover:border-champagne/50 text-right transition cursor-pointer">
-                            <div class="text-sm font-black text-white">ברברשופ בוטיק</div>
-                            <div class="text-xs font-extrabold text-stone-400 mt-1">BLADE &amp; GOLD | בלייד אנד גולד</div>
-                        </button>
-
-                        <button type="button" onclick="loadPreset('fitness')" id="card-preset-fitness"
-                                class="preset-card p-4 rounded-2xl border border-champagne/15 bg-obsidian hover:border-champagne/50 text-right transition cursor-pointer">
-                            <div class="text-sm font-black text-white">מאמן כושר / סטודיו</div>
-                            <div class="text-xs font-extrabold text-stone-400 mt-1">APEX STUDIO | אייפקס פיטנס</div>
-                        </button>
-
-                        <button type="button" onclick="loadPreset('aesthetic')" id="card-preset-aesthetic"
-                                class="preset-card p-4 rounded-2xl border border-champagne/15 bg-obsidian hover:border-champagne/50 text-right transition cursor-pointer">
-                            <div class="text-sm font-black text-white">אסתטיקה / עסק יוקרה</div>
-                            <div class="text-xs font-extrabold text-stone-400 mt-1">AURA STUDIO | אורה בוטיק</div>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="glass-panel p-5 space-y-4">
-                    <h2 class="text-base font-black text-white">פרטי קשר וכפתורי פעולה של האתר הנבנה</h2>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">מספר וואטסאפ של העסק (972...)</label>
-                            <input type="tel" id="fldWhatsapp" dir="ltr" placeholder="972501234567" oninput="handleFieldInput()"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm text-left" />
-                        </div>
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">עיר / כתובת העסק</label>
-                            <input type="text" id="fldAddress" oninput="handleFieldInput()"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">טקסט כפתור הזמנת שולחן / תור</label>
-                            <input type="text" id="fldPrimaryCta" oninput="handleFieldInput()"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                        </div>
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">טקסט כפתור משלוחים</label>
-                            <input type="text" id="fldDeliveryCta" oninput="handleFieldInput()"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">טקסט כפתור תפריט</label>
-                            <input type="text" id="fldSecondaryCta" oninput="handleFieldInput()"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                        </div>
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">זמן משלוח / דמי משלוח</label>
-                            <input type="text" id="fldDeliveryInfo" oninput="handleFieldInput()"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 2: LOGO & ADVANCED DESIGN STUDIO -->
-            <div id="tab-panel-brand" class="ctrl-panel hidden space-y-4">
-                <div class="glass-panel p-5 space-y-4 border-champagne/30">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-base font-black text-white">לוגו העסק (מותג אישי)</h2>
-                        <span class="px-2.5 py-1 rounded-full bg-champagne/15 text-champagne text-[11px] font-black">מופיע בראש ובתחתית האתר</span>
-                    </div>
-
-                    <div class="flex items-center gap-3.5">
-                        <div id="logoPreviewThumb" class="w-16 h-16 rounded-2xl bg-obsidian border border-champagne/25 flex items-center justify-center overflow-hidden shrink-0">
-                            <span class="text-[11px] font-black text-stone-500 text-center px-1">ללא לוגו</span>
-                        </div>
-
-                        <div class="flex-1 space-y-2">
-                            <div class="flex items-center gap-2">
-                                <label class="flex-1 py-2.5 px-3.5 rounded-xl bg-champagne hover:bg-champagneHover text-obsidian text-xs font-black text-center cursor-pointer transition">
-                                    העלה קובץ לוגו
-                                    <input type="file" accept="image/*" onchange="handleLogoFileUpload(event)" class="hidden" />
-                                </label>
-                                <button type="button" onclick="clearClientLogo()"
-                                        class="py-2.5 px-3 rounded-xl bg-white/5 hover:bg-red-500/20 text-stone-300 hover:text-red-300 text-xs font-black cursor-pointer transition">
-                                    הסר
-                                </button>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-black text-stone-300 mb-1.5">כפתור שריון מקום</label>
+                                <input type="text" id="fldPrimaryCta" oninput="handleFieldInput()"
+                                       class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
                             </div>
-                            <input type="url" id="fldLogoUrl" dir="ltr" placeholder="או הדבק קישור לתמונת הלוגו (https://...)" oninput="handleLogoUrlInput(this.value)"
-                                   class="studio-field w-full px-3 py-2 rounded-xl text-xs text-left" />
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-champagne/15">
-                        <div>
-                            <div class="flex justify-between text-xs font-black text-stone-300 mb-1.5">
-                                <span>גודל הלוגו</span>
-                                <span id="logoSizeLabel" class="text-champagne">38px</span>
+                            <div>
+                                <label class="block text-xs font-black text-stone-300 mb-1.5">כפתור משלוחים</label>
+                                <input type="text" id="fldDeliveryCta" oninput="handleFieldInput()"
+                                       class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
                             </div>
-                            <input type="range" id="fldLogoSize" min="26" max="64" value="38" oninput="updateLogoStyle()"
-                                   class="w-full accent-[#D4BEA2] cursor-pointer" />
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">צורת מסגרת הלוגו</label>
-                            <select id="fldLogoShape" onchange="updateLogoStyle()" class="studio-field w-full px-3.5 py-2 rounded-xl text-xs">
-                                <option value="circle">עיגול מדויק (Circle)</option>
-                                <option value="rounded">ריבוע מעוגל (Rounded)</option>
-                                <option value="clean">חופשי / שקוף ללא מסגרת</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <label class="flex items-center gap-2.5 text-xs font-bold text-stone-300 cursor-pointer pt-1">
-                        <input type="checkbox" id="fldShowNameNextToLogo" checked onchange="updateLogoStyle()" class="w-4 h-4 accent-[#D4BEA2] rounded cursor-pointer" />
-                        <span>הצג גם את שם העסק בטקסט ליד הלוגו</span>
-                    </label>
-                </div>
-
-                <!-- Visual Themes -->
-                <div class="glass-panel p-5 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-base font-black text-white">ערכת עיצוב ואווירה (Theme)</h2>
-                        <span id="hexCodeBadge" class="text-xs font-mono font-black text-champagne">#D4BEA2</span>
-                    </div>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                        <button type="button" onclick="applyColorTheme('obsidian-gold')"
-                                class="p-3 rounded-2xl bg-[#090807] border border-champagne/40 hover:border-champagne text-right flex items-center gap-2.5 cursor-pointer transition">
-                            <span class="w-4 h-4 rounded-full shrink-0" style="background:#D4BEA2"></span>
-                            <span class="text-xs font-black text-white">שחור זהב</span>
-                        </button>
-
-                        <button type="button" onclick="applyColorTheme('ivory-light')"
-                                class="p-3 rounded-2xl bg-[#F8F5F0] border border-stone-300 hover:border-stone-900 text-right flex items-center gap-2.5 cursor-pointer transition">
-                            <span class="w-4 h-4 rounded-full shrink-0" style="background:#B45309"></span>
-                            <span class="text-xs font-black text-[#181512]">בהיר נקי</span>
-                        </button>
-
-                        <button type="button" onclick="applyColorTheme('midnight-cobalt')"
-                                class="p-3 rounded-2xl bg-[#070B14] border border-sky-400/40 hover:border-sky-400 text-right flex items-center gap-2.5 cursor-pointer transition">
-                            <span class="w-4 h-4 rounded-full shrink-0" style="background:#38BDF8"></span>
-                            <span class="text-xs font-black text-white">כחול לילה</span>
-                        </button>
-
-                        <button type="button" onclick="applyColorTheme('forest-emerald')"
-                                class="p-3 rounded-2xl bg-[#060E0A] border border-emerald-400/40 hover:border-emerald-400 text-right flex items-center gap-2.5 cursor-pointer transition">
-                            <span class="w-4 h-4 rounded-full shrink-0" style="background:#4ADE80"></span>
-                            <span class="text-xs font-black text-white">ירוק אמרלד</span>
-                        </button>
-
-                        <button type="button" onclick="applyColorTheme('velvet-crimson')"
-                                class="p-3 rounded-2xl bg-[#120709] border border-rose-400/40 hover:border-rose-400 text-right flex items-center gap-2.5 cursor-pointer transition">
-                            <span class="w-4 h-4 rounded-full shrink-0" style="background:#FB7185"></span>
-                            <span class="text-xs font-black text-white">בורדו קטיפה</span>
-                        </button>
-
-                        <label class="p-3 rounded-2xl bg-obsidian border border-dashed border-champagne/40 hover:border-champagne flex items-center justify-center gap-2 text-champagne text-xs font-black cursor-pointer transition">
-                            <span>+ צבע חופשי</span>
-                            <input type="color" id="fldAccentPicker" value="#D4BEA2" oninput="applyAccentColor(this.value)" class="opacity-0 absolute w-0 h-0" />
-                        </label>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-champagne/15">
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">סגנון גופן (פונט)</label>
-                            <select id="fldFontFamily" onchange="updateDesignStyle()" class="studio-field w-full px-3.5 py-2.5 rounded-xl text-xs">
-                                <option value="Heebo">Heebo — מודרני וחד</option>
-                                <option value="Rubik">Rubik — מעוגל וידידותי</option>
-                                <option value="Frank Ruhl Libre">Frank Ruhl — יוקרתי קלאסי</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">צורת כפתורים וכרטיסים</label>
-                            <select id="fldCornerStyle" onchange="updateDesignStyle()" class="studio-field w-full px-3.5 py-2.5 rounded-xl text-xs">
-                                <option value="pill">עגול מלא (Pill Luxury)</option>
-                                <option value="rounded">פינות רכות (Modern Rounded)</option>
-                                <option value="sharp">קווים חדים (Architectural Sharp)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-champagne/15">
-                        <div>
-                            <div class="flex justify-between text-xs font-black text-stone-300 mb-1.5">
-                                <span>החשכת רקע (קריאות)</span>
-                                <span id="overlayValLabel" class="text-champagne">70%</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-black text-stone-300 mb-1.5">כפתור תפריט</label>
+                                <input type="text" id="fldSecondaryCta" oninput="handleFieldInput()"
+                                       class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
                             </div>
-                            <input type="range" id="fldOverlayOpacity" min="30" max="92" value="70" oninput="updateDesignStyle()"
-                                   class="w-full accent-[#D4BEA2] cursor-pointer" />
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">פריסת תפריט</label>
-                            <select id="fldMenuLayout" onchange="updateDesignStyle()" class="studio-field w-full px-3.5 py-2.5 rounded-xl text-xs">
-                                <option value="cards">כרטיסיות זכוכית (Cards)</option>
-                                <option value="editorial">רשימת שף נקייה (Minimal List)</option>
-                            </select>
+                            <div>
+                                <label class="block text-xs font-black text-stone-300 mb-1.5">תנאי משלוח</label>
+                                <input type="text" id="fldDeliveryInfo" oninput="handleFieldInput()"
+                                       class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Texts & Background Photo -->
-                <div class="glass-panel p-5 space-y-4">
-                    <h2 class="text-base font-black text-white">טקסטים וכותרות</h2>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">שם העסק</label>
-                            <input type="text" id="fldBizName" oninput="handleFieldInput()"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
+                <!-- TAB 2: DIVERSE LAYOUTS, THEMES & LOGO -->
+                <div id="tab-panel-brand" class="ctrl-panel hidden space-y-4">
+                    <div class="glass-panel p-5 space-y-3 border-champagne/30">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-base font-black text-white">מבנה עיצוב האתר (Layout)</h2>
+                            <span class="px-2.5 py-1 rounded-full bg-champagne/15 text-champagne text-[11px] font-black">3 סגנונות שונים</span>
                         </div>
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">תגית עליונה / באדג׳</label>
-                            <input type="text" id="fldBadge" oninput="handleFieldInput()"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">כותרת ראשית — שורה 1</label>
-                            <input type="text" id="fldHeroLine1" oninput="handleFieldInput()"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                        </div>
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">כותרת ראשית — שורה 2 (צבע מותג)</label>
-                            <input type="text" id="fldHeroLine2" oninput="handleFieldInput()"
-                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" onclick="setSiteLayout('editorial-split')" id="layout-btn-editorial-split"
+                                    class="layout-choice-btn p-3 rounded-xl border-2 border-champagne bg-champagne/15 text-center cursor-pointer transition">
+                                <div class="text-xs font-black text-white">מגזין יוקרה</div>
+                                <div class="text-[10px] font-bold text-champagne mt-0.5">תמונה + כרטיסי מידע</div>
+                            </button>
+                            <button type="button" onclick="setSiteLayout('centered-luxury')" id="layout-btn-centered-luxury"
+                                    class="layout-choice-btn p-3 rounded-xl border border-champagne/15 bg-obsidian text-center cursor-pointer transition">
+                                <div class="text-xs font-black text-white">בוטיק ממורכז</div>
+                                <div class="text-[10px] font-bold text-stone-400 mt-0.5">סימטרי + לוגו מרכזי</div>
+                            </button>
+                            <button type="button" onclick="setSiteLayout('bento-modern')" id="layout-btn-bento-modern"
+                                    class="layout-choice-btn p-3 rounded-xl border border-champagne/15 bg-obsidian text-center cursor-pointer transition">
+                                <div class="text-xs font-black text-white">Bento מודרני</div>
+                                <div class="text-[10px] font-bold text-stone-400 mt-0.5">קוביות חכמות + באדג׳ים</div>
+                            </button>
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-black text-stone-300 mb-1.5">תיאור קצר מתחת לכותרת</label>
-                        <textarea id="fldDescription" rows="2" oninput="handleFieldInput()"
-                                  class="studio-field w-full px-3.5 py-2.5 rounded-xl text-xs leading-relaxed"></textarea>
+                    <div class="glass-panel p-5 space-y-3">
+                        <h2 class="text-base font-black text-white">לוגו העסק (נשמר בענן באיכות מלאה)</h2>
+                        <div class="flex items-center gap-3">
+                            <div id="logoPreviewThumb" class="w-14 h-14 rounded-2xl bg-obsidian border border-champagne/25 flex items-center justify-center overflow-hidden shrink-0">
+                                <span class="text-[10px] font-black text-stone-500">ללא לוגו</span>
+                            </div>
+                            <div class="flex-1 space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <label class="flex-1 py-2 px-3 rounded-xl bg-champagne hover:bg-champagneHover text-obsidian text-xs font-black text-center cursor-pointer">
+                                        העלה קובץ לוגו
+                                        <input type="file" accept="image/*" onchange="handleLogoFileUpload(event)" class="hidden" />
+                                    </label>
+                                    <button type="button" onclick="clearClientLogo()"
+                                            class="py-2 px-3 rounded-xl bg-white/5 hover:bg-red-500/20 text-stone-300 text-xs font-black cursor-pointer">
+                                        הסר
+                                    </button>
+                                </div>
+                                <input type="url" id="fldLogoUrl" dir="ltr" placeholder="או קישור לתמונת הלוגו (https://...)" oninput="handleLogoUrlInput(this.value)"
+                                       class="studio-field w-full px-3 py-1.5 rounded-xl text-xs text-left" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-5 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-base font-black text-white">פלטת צבעים וגופנים</h2>
+                            <span id="hexCodeBadge" class="text-xs font-mono font-black text-champagne">#D4BEA2</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" onclick="applyColorTheme('obsidian-gold')"
+                                    class="p-2.5 rounded-xl bg-[#090807] border border-champagne/40 flex items-center gap-2 cursor-pointer">
+                                <span class="w-3.5 h-3.5 rounded-full shrink-0" style="background:#D4BEA2"></span>
+                                <span class="text-[11px] font-black text-white">שחור זהב</span>
+                            </button>
+                            <button type="button" onclick="applyColorTheme('ivory-light')"
+                                    class="p-2.5 rounded-xl bg-[#F8F5F0] border border-stone-300 flex items-center gap-2 cursor-pointer">
+                                <span class="w-3.5 h-3.5 rounded-full shrink-0" style="background:#B45309"></span>
+                                <span class="text-[11px] font-black text-[#181512]">בהיר שמנת</span>
+                            </button>
+                            <button type="button" onclick="applyColorTheme('midnight-cobalt')"
+                                    class="p-2.5 rounded-xl bg-[#070B14] border border-sky-400/40 flex items-center gap-2 cursor-pointer">
+                                <span class="w-3.5 h-3.5 rounded-full shrink-0" style="background:#38BDF8"></span>
+                                <span class="text-[11px] font-black text-white">כחול לילה</span>
+                            </button>
+                            <button type="button" onclick="applyColorTheme('forest-emerald')"
+                                    class="p-2.5 rounded-xl bg-[#060E0A] border border-emerald-400/40 flex items-center gap-2 cursor-pointer">
+                                <span class="w-3.5 h-3.5 rounded-full shrink-0" style="background:#4ADE80"></span>
+                                <span class="text-[11px] font-black text-white">ירוק אמרלד</span>
+                            </button>
+                            <button type="button" onclick="applyColorTheme('velvet-crimson')"
+                                    class="p-2.5 rounded-xl bg-[#120709] border border-rose-400/40 flex items-center gap-2 cursor-pointer">
+                                <span class="w-3.5 h-3.5 rounded-full shrink-0" style="background:#FB7185"></span>
+                                <span class="text-[11px] font-black text-white">בורדו קטיפה</span>
+                            </button>
+                            <label class="p-2.5 rounded-xl bg-obsidian border border-dashed border-champagne/40 flex items-center justify-center text-champagne text-[11px] font-black cursor-pointer">
+                                <span>+ צבע חופשי</span>
+                                <input type="color" id="fldAccentPicker" value="#D4BEA2" oninput="applyAccentColor(this.value)" class="opacity-0 absolute w-0 h-0" />
+                            </label>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 pt-2 border-t border-champagne/15">
+                            <div>
+                                <label class="block text-xs font-black text-stone-300 mb-1">גופן (פונט)</label>
+                                <select id="fldFontFamily" onchange="updateDesignStyle()" class="studio-field w-full px-3 py-2 rounded-xl text-xs">
+                                    <option value="Heebo">Heebo — מודרני וחד</option>
+                                    <option value="Rubik">Rubik — מעוגל וידידותי</option>
+                                    <option value="Frank Ruhl Libre">Frank Ruhl — יוקרתי קלאסי</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-black text-stone-300 mb-1">פינות וכפתורים</label>
+                                <select id="fldCornerStyle" onchange="updateDesignStyle()" class="studio-field w-full px-3 py-2 rounded-xl text-xs">
+                                    <option value="pill">עגול מלא (Pill)</option>
+                                    <option value="rounded">פינות רכות (Rounded)</option>
+                                    <option value="sharp">קווים חדים (Sharp)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-5 space-y-3">
+                        <h2 class="text-base font-black text-white">כותרות ותמונות</h2>
+                        <div class="grid grid-cols-2 gap-3">
+                            <input type="text" id="fldBizName" placeholder="שם העסק" oninput="handleFieldInput()" class="studio-field px-3 py-2 rounded-xl text-xs" />
+                            <input type="text" id="fldBadge" placeholder="תגית עליונה" oninput="handleFieldInput()" class="studio-field px-3 py-2 rounded-xl text-xs" />
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <input type="text" id="fldHeroLine1" placeholder="כותרת שורה 1" oninput="handleFieldInput()" class="studio-field px-3 py-2 rounded-xl text-xs" />
+                            <input type="text" id="fldHeroLine2" placeholder="כותרת שורה 2" oninput="handleFieldInput()" class="studio-field px-3 py-2 rounded-xl text-xs" />
+                        </div>
+                        <textarea id="fldDescription" rows="2" placeholder="תיאור קצר" oninput="handleFieldInput()" class="studio-field w-full px-3 py-2 rounded-xl text-xs"></textarea>
+                        <input type="url" id="fldBgImage" dir="ltr" placeholder="קישור לתמונת רקע" oninput="handleFieldInput()" class="studio-field w-full px-3 py-2 rounded-xl text-xs text-left" />
+                        <div id="nicheThumbsContainer" class="grid grid-cols-4 gap-2 pt-1"></div>
                     </div>
                 </div>
 
-                <div class="glass-panel p-5 space-y-3">
-                    <label class="block text-xs font-black text-stone-300">תמונת רקע (קישור או בחירה מגלריית הנישה)</label>
-                    <input type="url" id="fldBgImage" dir="ltr" oninput="handleFieldInput()"
-                           class="studio-field w-full px-3.5 py-2 rounded-xl text-xs text-left" />
-
-                    <div id="nicheThumbsContainer" class="grid grid-cols-4 gap-2.5 pt-1"></div>
-                </div>
-            </div>
-
-            <!-- TAB 3: MENU & DELIVERIES ITEMS -->
-            <div id="tab-panel-menu" class="ctrl-panel hidden space-y-4">
-                <div class="glass-panel p-5 space-y-4">
-                    <div class="flex items-center justify-between gap-2">
-                        <div>
-                            <h2 class="text-base font-black text-white">פריטי התפריט והמשלוחים</h2>
-                            <p class="text-xs font-bold text-stone-400 mt-0.5">התפריט מוצג נקי לעיון, ובאזור המשלוחים אפשר להוסיף לסל</p>
+                <!-- TAB 3: MENU & DELIVERIES ITEMS -->
+                <div id="tab-panel-menu" class="ctrl-panel hidden space-y-4">
+                    <div class="glass-panel p-5 space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <div>
+                                <h2 class="text-base font-black text-white">פריטי התפריט והמשלוחים</h2>
+                                <p class="text-xs font-bold text-stone-400 mt-0.5">מופיע נקי בתפריט ועם כפתורי + / - באזור המשלוחים</p>
+                            </div>
+                            <button type="button" onclick="addMenuServiceRow()"
+                                    class="px-4 py-2 rounded-full bg-champagne text-obsidian text-xs font-black hover:bg-champagneHover transition cursor-pointer shrink-0">
+                                + הוסף פריט
+                            </button>
                         </div>
-                        <button type="button" onclick="addMenuServiceRow()"
-                                class="px-4 py-2 rounded-full bg-champagne text-obsidian text-xs font-black hover:bg-champagneHover transition cursor-pointer shrink-0">
-                            + הוסף פריט
+                        <input type="text" id="fldMenuHeading" placeholder="כותרת התפריט" oninput="handleFieldInput()" class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
+                        <div id="menuRowsContainer" class="space-y-3"></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- LEFT/CENTER LIVE STAGE -->
+            <section id="liveStageColumn" class="hidden lg:flex lg:col-span-7 flex-col items-center justify-start gap-3">
+                <div class="w-full glass-panel px-4 py-2.5 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-2">
+                        <button id="stageBtnMobile" onclick="setViewportMode('mobile')"
+                                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-champagne text-obsidian text-xs font-black transition cursor-pointer">
+                            <span>תצוגת אייפון</span>
+                        </button>
+                        <button id="stageBtnDesktop" onclick="setViewportMode('desktop')"
+                                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer">
+                            <span>תצוגת מסך מלא</span>
                         </button>
                     </div>
-
-                    <div>
-                        <label class="block text-xs font-black text-stone-300 mb-1.5">כותרת אזור התפריט</label>
-                        <input type="text" id="fldMenuHeading" oninput="handleFieldInput()"
-                               class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                    </div>
-
-                    <div id="menuRowsContainer" class="space-y-3"></div>
-                </div>
-            </div>
-        </aside>
-
-        <!-- LEFT/CENTER LIVE STAGE -->
-        <section id="liveStageColumn" class="hidden lg:flex lg:col-span-7 flex-col items-center justify-start gap-3">
-
-            <div class="w-full glass-panel px-4 py-2.5 flex items-center justify-between gap-3">
-                <div class="flex items-center gap-2">
-                    <button id="stageBtnMobile" onclick="setViewportMode('mobile')"
-                            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-champagne text-obsidian text-xs font-black transition cursor-pointer">
-                        <span>תצוגת אייפון (מובייל)</span>
-                    </button>
-                    <button id="stageBtnDesktop" onclick="setViewportMode('desktop')"
-                            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer">
-                        <span>תצוגת מסך מלא (דסקטופ)</span>
+                    <button onclick="saveSiteToSupabaseAndCopy()"
+                            class="px-3.5 py-1.5 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/30 text-emerald-300 text-xs font-black cursor-pointer">
+                        שמור והעתק קישור קצר &larr;
                     </button>
                 </div>
-            </div>
 
-            <div class="w-full flex-1 flex items-center justify-center">
-                <div id="deviceFrameBezel" class="iphone-17-pro-frame">
-                    <div id="dynamicIslandPill" class="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-30 pointer-events-none border border-white/10 flex items-center justify-end px-2.5">
-                        <span class="w-2 h-2 rounded-full bg-[#171B26] border border-white/10"></span>
-                    </div>
-
-                    <div id="desktopChromeHeader" class="hidden h-9 bg-[#161311] border-b border-champagne/15 px-4 flex items-center justify-between shrink-0">
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-stone-600"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-stone-600"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-stone-600"></span>
+                <div class="w-full flex-1 flex items-center justify-center">
+                    <div id="deviceFrameBezel" class="iphone-17-pro-frame">
+                        <div id="dynamicIslandPill" class="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-30 pointer-events-none border border-white/10 flex items-center justify-end px-2.5">
+                            <span class="w-2 h-2 rounded-full bg-[#171B26] border border-white/10"></span>
                         </div>
-                        <div id="browserAddressSlug" class="px-4 py-0.5 rounded-full bg-obsidian border border-white/10 text-[10px] font-mono text-champagne">
-                            https://kairo-grill-tlv.github.io
+                        <div id="desktopChromeHeader" class="hidden h-9 bg-[#161311] border-b border-champagne/15 px-4 flex items-center justify-between shrink-0">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-stone-600"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-stone-600"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-stone-600"></span>
+                            </div>
+                            <div id="browserAddressSlug" class="px-4 py-0.5 rounded-full bg-obsidian border border-white/10 text-[10px] font-mono text-emerald-400">
+                                ?s=kairo
+                            </div>
+                            <div class="w-10"></div>
                         </div>
-                        <div class="w-10"></div>
-                    </div>
-
-                    <iframe id="clientSiteIframe" title="תצוגה מקדימה חיה של האתר" class="w-full flex-1 h-full border-0 bg-[#090807]"></iframe>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 3. AUTOMATED WHATSAPP & STUDIO CHATBOT WIDGET -->
-    <div class="fixed bottom-5 left-5 z-50 flex flex-col items-end gap-3">
-        <div id="studioBotWindow" class="hidden w-[335px] sm:w-[370px] glass-panel border border-champagne/35 shadow-2xl overflow-hidden flex-col bot-window-open">
-            <div class="bg-[#181512] border-b border-champagne/20 px-4 py-3.5 flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                    <div class="relative w-9 h-9 rounded-full bg-champagne text-obsidian flex items-center justify-center font-black text-sm">
-                        AI
-                        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#181512]"></span>
-                    </div>
-                    <div>
-                        <div class="text-xs font-black text-white">העוזר האוטומטי של STUDIO ENGINE</div>
-                        <div class="text-[10px] font-bold text-emerald-400">מחובר • מענה מיידי + העברה לוואטסאפ</div>
+                        <iframe id="clientSiteIframe" title="תצוגה מקדימה חיה" class="w-full flex-1 h-full border-0 bg-[#090807]"></iframe>
                     </div>
                 </div>
-                <button type="button" onclick="toggleStudioBot()" class="w-7 h-7 rounded-full bg-white/5 hover:bg-white/10 text-stone-300 text-xs flex items-center justify-center cursor-pointer">✕</button>
-            </div>
-
-            <div id="botMessagesFeed" class="p-4 h-64 overflow-y-auto space-y-3 text-xs bg-[#0B0A08]">
-                <div class="p-3 rounded-2xl rounded-tr-none bg-[#191613] border border-champagne/15 text-stone-200 font-bold leading-relaxed">
-                    אהלן! 👋 אני הבוט של <span class="text-champagne font-black">STUDIO ENGINE</span>. אפשר לשאול אותי על מחירים, זמני הקמה, או להעביר את האתר שבנית עכשיו ישר לוואטסאפ שלנו!
-                </div>
-            </div>
-
-            <div class="px-3 py-2 bg-[#12100E] border-t border-white/10 flex flex-wrap gap-1.5">
-                <button type="button" onclick="askStudioBot('כמה עולה לבנות אתר כזה?')"
-                        class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-champagne/20 text-[10px] font-black text-champagne cursor-pointer transition">
-                    כמה זה עולה?
-                </button>
-                <button type="button" onclick="askStudioBot('תוך כמה זמן האתר מוכן?')"
-                        class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-champagne/20 text-[10px] font-black text-champagne cursor-pointer transition">
-                    זמן הקמה?
-                </button>
-                <button type="button" onclick="askStudioBot('שלח את האתר שבניתי לוואטסאפ')"
-                        class="px-2.5 py-1 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 text-[10px] font-black text-emerald-300 cursor-pointer transition">
-                    שגר לוואטסאפ &larr;
-                </button>
-            </div>
-
-            <form onsubmit="handleBotInputSubmit(event)" class="p-2.5 bg-[#161311] border-t border-champagne/15 flex items-center gap-2">
-                <input type="text" id="botUserInput" placeholder="כתוב שאלה לבוט..."
-                       class="flex-1 studio-field px-3 py-2 rounded-full text-xs" />
-                <button type="submit" class="px-4 py-2 rounded-full bg-champagne text-obsidian text-xs font-black cursor-pointer">
-                    שלח
-                </button>
-            </form>
-        </div>
-
-        <button type="button" onclick="toggleStudioBot()"
-                class="flex items-center gap-2.5 px-4 py-3 rounded-full bg-champagne hover:bg-champagneHover text-obsidian font-black text-xs sm:text-sm shadow-[0_10px_35px_rgba(212,190,162,0.4)] transition cursor-pointer">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse"></span>
-            <span>צ׳אט אוטומטי &amp; וואטסאפ</span>
-        </button>
+            </section>
+        </main>
     </div>
 
-    <!-- 4. STUDIO QUICK INQUIRY MODAL -->
-    <div id="studioInquiryModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-        <div class="glass-panel max-w-md w-full p-6 sm:p-7 relative border border-champagne/30 space-y-4">
-            <button type="button" onclick="closeStudioInquiryModal()" class="absolute top-5 left-5 w-8 h-8 rounded-full bg-white/10 text-white text-xs font-black flex items-center justify-center cursor-pointer">✕</button>
-            <div>
-                <span class="text-xs font-black text-champagne">הזמנה ישירה ב-150 ₪ חד-פעמי</span>
-                <h3 class="text-2xl font-black text-white mt-0.5">שליחת האתר שבנית לוואטסאפ</h3>
-                <p class="text-xs font-bold text-stone-400 mt-1">כל ההגדרות, הצבעים והבקשות שבחרת יועברו אוטומטית להודעה.</p>
-            </div>
-
-            <form onsubmit="submitModalLeadToWhatsApp(event)" class="space-y-3">
-                <div>
-                    <label class="block text-xs font-black text-stone-300 mb-1">השם שלך</label>
-                    <input type="text" id="modalLeadName" required placeholder="שם מלא"
-                           class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                </div>
-                <div>
-                    <label class="block text-xs font-black text-stone-300 mb-1">טלפון / אינסטגרם של העסק</label>
-                    <input type="text" id="modalLeadContact" required placeholder="050-0000000 או @insta"
-                           class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
-                </div>
-                <button type="submit"
-                        class="w-full py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-obsidian text-sm font-black shadow-lg transition cursor-pointer">
-                    פתח וואטסאפ ושלח פרטים &larr;
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Floating Toast Confirmation -->
+    <!-- Toast Confirmation -->
     <div id="toastBanner" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden">
-        <div class="px-6 py-3.5 rounded-full bg-espresso border border-champagne/40 text-white text-xs sm:text-sm font-black shadow-2xl flex items-center gap-2.5 toast-visible">
-            <span class="w-2.5 h-2.5 rounded-full bg-champagne"></span>
-            <span id="toastText">בוצע בהצלחה!</span>
+        <div class="px-6 py-3.5 rounded-full bg-espresso border border-emerald-400/40 text-white text-xs sm:text-sm font-black shadow-2xl flex items-center gap-2.5 toast-visible">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span id="toastText">נשמר בענן והקישור הועתק!</span>
         </div>
     </div>
 
     <script>
-        // *** החלף כאן למספר הוואטסאפ האמיתי שלך (בפורמט 9725...) ***
+        // *** SUPABASE CLOUD CONFIGURATION ***
+        const SUPABASE_URL = "https://ointvaxjfvvyzabklftp.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_X0SUT2S6kTDVxYNt0O5ERA_NZKmA7ZC";
         const STUDIO_OWNER_WA = "972501234567";
 
         const colorThemes = {
-            'obsidian-gold': { bg: '#090807', surface: '#141210', text: '#F7F4EF', muted: '#A8A29E', accent: '#D4BEA2', isLight: false },
-            'ivory-light':   { bg: '#F8F5F0', surface: '#FFFFFF', text: '#181512', muted: '#57534E', accent: '#B45309', isLight: true },
+            'obsidian-gold':   { bg: '#090807', surface: '#141210', text: '#F7F4EF', muted: '#A8A29E', accent: '#D4BEA2', isLight: false },
+            'ivory-light':     { bg: '#F8F5F0', surface: '#FFFFFF', text: '#181512', muted: '#57534E', accent: '#B45309', isLight: true },
             'midnight-cobalt': { bg: '#070B14', surface: '#0F172A', text: '#F8FAFC', muted: '#94A3B8', accent: '#38BDF8', isLight: false },
-            'forest-emerald': { bg: '#060E0A', surface: '#0D1C14', text: '#F0FDF4', muted: '#86EFAC', accent: '#4ADE80', isLight: false },
-            'velvet-crimson': { bg: '#120709', surface: '#1F0D11', text: '#FFF1F2', muted: '#FDA4AF', accent: '#FB7185', isLight: false }
+            'forest-emerald':  { bg: '#060E0A', surface: '#0D1C14', text: '#F0FDF4', muted: '#86EFAC', accent: '#4ADE80', isLight: false },
+            'velvet-crimson':  { bg: '#120709', surface: '#1F0D11', text: '#FFF1F2', muted: '#FDA4AF', accent: '#FB7185', isLight: false }
         };
 
         const studioPresets = {
             restaurant: {
-                slug: 'kairo-grill-tlv',
+                slug: 'kairo',
                 bizName: 'KAIRO | קאירו',
                 logoData: '',
-                logoSize: 38,
-                logoShape: 'circle',
-                showNameNextToLogo: true,
                 badge: 'מטבח אש פתוחה • יישון יבש • תל אביב',
                 heroLine1: 'אש, בשר מיושן.',
                 heroLine2: 'וחוויית לילה אחרת.',
                 description: 'נתחים מובחרים ביישון יבש של 45 יום על גחלי אלון, קוקטיילים בעישון חי וחלל אירוח אינטימי שמרגיש כמו סלון פרטי בלב העיר.',
+                layoutStyle: 'editorial-split',
                 themeKey: 'obsidian-gold',
                 accentColor: '#D4BEA2',
                 fontFamily: 'Heebo',
                 cornerStyle: 'pill',
-                overlayOpacity: 70,
-                menuLayout: 'cards',
                 whatsapp: '972501234567',
                 primaryCta: 'הזמנת שולחן',
                 deliveryCta: 'הזמנת משלוח',
                 secondaryCta: 'תפריט המסעדה',
                 deliveryInfo: 'משלוחים חמים תוך 45 דק׳ • דמי משלוח 15 ₪',
+                hoursWeekdays: 'א׳–ה׳: 12:00 – 23:30',
+                hoursWeekend: 'ו׳: 11:30–16:00 | מוצ״ש: 20:00–00:30',
                 address: 'אחד העם 28, תל אביב',
                 menuHeading: 'תפריט השף והגריל',
-                bgImage: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=2000&q=85',
+                bgImage: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1800&q=85',
                 curatedImages: [
-                    'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=2000&q=85'
+                    'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=1800&q=85'
                 ],
                 menuItems: [
                     { name: 'טומהוק וואגיו מיושן (750 ג׳)', price: 290, desc: 'צליית גחלי אלון, קרם ארטישוק ירושלמי וציר בקר מצומצם' },
@@ -820,35 +594,33 @@
                 ]
             },
             barber: {
-                slug: 'blade-and-gold-tlv',
+                slug: 'blade-gold',
                 bizName: 'BLADE & GOLD',
                 logoData: '',
-                logoSize: 38,
-                logoShape: 'rounded',
-                showNameNextToLogo: true,
                 badge: 'חוויית גרומינג פרטית • שדרות רוטשילד',
                 heroLine1: 'אומנות התספורת.',
                 heroLine2: 'בסטנדרט אחר.',
-                description: 'מעבר לתספורת מדויקת — טקס של שקט, מגבות חמות, תער מסורתי וטיפוח אישי באווירה אינטימית ומוקפדת.',
+                description: 'טקס של שקט, מגבות חמות, תער מסורתי וטיפוח אישי באווירה אינטימית ומוקפדת בלב העיר.',
+                layoutStyle: 'bento-modern',
                 themeKey: 'obsidian-gold',
                 accentColor: '#D4BEA2',
                 fontFamily: 'Heebo',
                 cornerStyle: 'sharp',
-                overlayOpacity: 75,
-                menuLayout: 'cards',
                 whatsapp: '972528889900',
                 primaryCta: 'קביעת תור',
                 deliveryCta: 'מוצרי טיפוח במשלוח',
                 secondaryCta: 'טיפולים ומחירון',
                 deliveryInfo: 'משלוח מוצרי שיער וזקן עד הבית תוך 24 שעות',
+                hoursWeekdays: 'א׳–ה׳: 09:30 – 20:00',
+                hoursWeekend: 'יום ו׳: 09:00 – 15:00',
                 address: 'שדרות רוטשילד 72, תל אביב',
                 menuHeading: 'טיפולים ומחירון הסטודיו',
-                bgImage: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=85',
+                bgImage: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1800&q=85',
                 curatedImages: [
-                    'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=2000&q=85'
+                    'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1800&q=85'
                 ],
                 menuItems: [
                     { name: 'תספורת גבר קלאסית', price: 110, desc: 'דירוג מדויק במספריים ומכונה + חפיפה עם שמנים אתריים' },
@@ -858,35 +630,33 @@
                 ]
             },
             fitness: {
-                slug: 'apex-studio-rg',
+                slug: 'apex-fitness',
                 bizName: 'APEX STUDIO',
                 logoData: '',
-                logoSize: 38,
-                logoShape: 'circle',
-                showNameNextToLogo: true,
                 badge: 'אימונים אישיים 1 על 1 • מתחם הבורסה',
                 heroLine1: 'תוצאות אמיתיות.',
                 heroLine2: 'בלי תירוצים.',
                 description: 'אימונים אישיים 1 על 1 בסטודיו פרטי, בניית תוכנית תזונה מותאמת למטרה וליווי צמוד עד שתגיע לגרסה הכי חזקה שלך.',
+                layoutStyle: 'bento-modern',
                 themeKey: 'forest-emerald',
                 accentColor: '#4ADE80',
                 fontFamily: 'Rubik',
                 cornerStyle: 'rounded',
-                overlayOpacity: 72,
-                menuLayout: 'cards',
                 whatsapp: '972547776655',
                 primaryCta: 'קביעת אימון',
                 deliveryCta: 'מארזי תזונה במשלוח',
                 secondaryCta: 'מסלולים ומחירון',
                 deliveryInfo: 'משלוח מארזי ארוחות חלבון טריות עד הבית',
+                hoursWeekdays: 'א׳–ה׳: 06:00 – 22:00',
+                hoursWeekend: 'יום ו׳: 07:00 – 14:00',
                 address: 'מתחם הבורסה, רמת גן',
                 menuHeading: 'מסלולי אימון וליווי אישי',
-                bgImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2000&q=85',
+                bgImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85',
                 curatedImages: [
-                    'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=2000&q=85'
+                    'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1800&q=85'
                 ],
                 menuItems: [
                     { name: 'אימון היכרות ואבחון גוף', price: 99, desc: 'פגישת היכרות, בדיקת הרכב גוף ואימון מלא' },
@@ -896,35 +666,33 @@
                 ]
             },
             aesthetic: {
-                slug: 'aura-boutique-tlv',
+                slug: 'aura-tlv',
                 bizName: 'AURA STUDIO',
                 logoData: '',
-                logoSize: 38,
-                logoShape: 'clean',
-                showNameNextToLogo: true,
                 badge: 'קליניקה לאסתטיקה וטיפוח מתקדם • תל אביב',
                 heroLine1: 'יופי מדויק.',
                 heroLine2: 'זוהר טבעי ועל-זמני.',
                 description: 'טיפולי פנים מתקדמים, עיצוב וטיפוח ברמת פרימיום בחלל שקט ופרטי המעניק לך חוויית רוגע ותוצאות נראות לעין מהטיפול הראשון.',
+                layoutStyle: 'centered-luxury',
                 themeKey: 'ivory-light',
                 accentColor: '#B45309',
                 fontFamily: 'Frank Ruhl Libre',
                 cornerStyle: 'pill',
-                overlayOpacity: 58,
-                menuLayout: 'editorial',
                 whatsapp: '972534443322',
                 primaryCta: 'תיאום תור לטיפול',
-                deliveryCta: 'הזמנת תכשירים במשלוח',
+                deliveryCta: 'תכשירים במשלוח',
                 secondaryCta: 'תפריט טיפולים',
                 deliveryInfo: 'משלוח תכשירי טיפוח עד הבית בחינם מעל 250 ₪',
+                hoursWeekdays: 'א׳–ה׳: 09:00 – 19:30',
+                hoursWeekend: 'יום ו׳: 09:00 – 13:30',
                 address: 'כיכר המדינה, תל אביב',
                 menuHeading: 'תפריט הטיפולים בקליניקה',
-                bgImage: 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=2000&q=85',
+                bgImage: 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=1800&q=85',
                 curatedImages: [
-                    'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=2000&q=85',
-                    'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=2000&q=85'
+                    'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=1800&q=85',
+                    'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1800&q=85'
                 ],
                 menuItems: [
                     { name: 'טיפול זוהר Signature Glow', price: 380, desc: 'החדרת לחות עמוקה, ויטמינים ועיסוי פנים מפסל' },
@@ -936,7 +704,6 @@
         };
 
         let builderState = JSON.parse(JSON.stringify(studioPresets.restaurant));
-        let lastCustomRequestNotes = "";
         let debounceTimer = null;
 
         function esc(str) {
@@ -956,19 +723,131 @@
             return digits || STUDIO_OWNER_WA;
         }
 
+        function cleanSlug(raw) {
+            return String(raw || 'site')
+                .toLowerCase()
+                .trim()
+                .replace(/[^a-z0-9-_]/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '') || 'site';
+        }
+
+        // =====================================================================
+        // SUPABASE CLOUD PERSISTENCE (SHORT LINKS ?s=slug)
+        // =====================================================================
+        function getShortShareUrl() {
+            const baseUrl = window.location.href.split('?')[0].split('#')[0];
+            const slug = cleanSlug(document.getElementById('fldSiteSlug')?.value || builderState.slug);
+            return `${baseUrl}?s=${slug}`;
+        }
+
+        function updateShortUrlPreview() {
+            const slugInput = document.getElementById('fldSiteSlug');
+            const slug = cleanSlug(slugInput.value);
+            builderState.slug = slug;
+            const shortUrl = getShortShareUrl();
+            const outBox = document.getElementById('liveUrlOutputBox');
+            if (outBox) outBox.value = shortUrl;
+            const browserBar = document.getElementById('browserAddressSlug');
+            if (browserBar) browserBar.textContent = `?s=${slug}`;
+        }
+
+        async function saveSiteToSupabaseAndCopy() {
+            const slugInput = document.getElementById('fldSiteSlug');
+            const slug = cleanSlug(slugInput ? slugInput.value : builderState.slug);
+            if (slugInput) slugInput.value = slug;
+            builderState.slug = slug;
+
+            const btnTop = document.getElementById('btnSaveCloudTop');
+            const btnCard = document.getElementById('btnSaveCloudCard');
+            if (btnTop) btnTop.textContent = 'שומר בענן...';
+            if (btnCard) btnCard.textContent = 'שומר...';
+
+            const payload = JSON.parse(JSON.stringify(builderState));
+            delete payload.curatedImages;
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/sites?on_conflict=slug`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'resolution=merge-duplicates,return=minimal'
+                    },
+                    body: JSON.stringify({
+                        slug: slug,
+                        data: payload
+                    })
+                });
+
+                if (!res.ok) {
+                    const errTxt = await res.text();
+                    throw new Error(errTxt || 'HTTP ' + res.status);
+                }
+
+                const shortUrl = getShortShareUrl();
+                updateShortUrlPreview();
+
+                const area = document.createElement('textarea');
+                area.value = shortUrl;
+                area.style.position = 'fixed';
+                area.style.left = '-9999px';
+                document.body.appendChild(area);
+                area.select();
+                try { document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(area);
+
+                triggerToast(`נשמר בענן! הקישור הקצר הועתק: ?s=${slug}`);
+            } catch (err) {
+                console.error(err);
+                triggerToast('שגיאה בשמירה לענן — בדוק חיבור לאינטרנט');
+            } finally {
+                if (btnTop) btnTop.textContent = 'שמור והעתק קישור קצר';
+                if (btnCard) btnCard.textContent = 'שמור והעתק';
+            }
+        }
+
+        async function openShortLinkInNewTab() {
+            await saveSiteToSupabaseAndCopy();
+            window.open(getShortShareUrl(), '_blank');
+        }
+
+        async function fetchSiteFromSupabase(slug) {
+            const clean = cleanSlug(slug);
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/sites?slug=eq.${encodeURIComponent(clean)}&select=data`, {
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                }
+            });
+            if (!res.ok) return null;
+            const rows = await res.json();
+            return (rows && rows[0] && rows[0].data) ? rows[0].data : null;
+        }
+
+        // Logo Upload
         function handleLogoFileUpload(event) {
             const file = event.target.files && event.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = function(e) {
-                builderState.logoData = e.target.result;
-                document.getElementById('fldLogoUrl').value = '';
-                const reqLabel = document.getElementById('reqLogoFileLabel');
-                if (reqLabel) reqLabel.textContent = 'לוגו צורף: ' + file.name;
-                syncLogoThumbPreview();
-                updateLiveIframe();
-                triggerToast('הלוגו הוטמע בהצלחה באתר!');
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const maxDim = 240;
+                    const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+                    canvas.width = Math.round(img.width * scale);
+                    canvas.height = Math.round(img.height * scale);
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    builderState.logoData = canvas.toDataURL('image/png', 0.9);
+                    document.getElementById('fldLogoUrl').value = '';
+                    syncLogoThumbPreview();
+                    updateLiveIframe();
+                    triggerToast('הלוגו הוטמע! לחץ "שמור והעתק" לעדכון בענן');
+                };
+                img.src = e.target.result;
             };
             reader.readAsDataURL(file);
         }
@@ -982,29 +861,16 @@
         function clearClientLogo() {
             builderState.logoData = '';
             document.getElementById('fldLogoUrl').value = '';
-            const reqLabel = document.getElementById('reqLogoFileLabel');
-            if (reqLabel) reqLabel.textContent = 'העלה תמונת לוגו מהטלפון / מחשב';
             syncLogoThumbPreview();
             updateLiveIframe();
-            triggerToast('הלוגו הוסר');
-        }
-
-        function updateLogoStyle() {
-            builderState.logoSize = parseInt(document.getElementById('fldLogoSize').value, 10) || 38;
-            builderState.logoShape = document.getElementById('fldLogoShape').value;
-            builderState.showNameNextToLogo = document.getElementById('fldShowNameNextToLogo').checked;
-            document.getElementById('logoSizeLabel').textContent = builderState.logoSize + 'px';
-            queueIframeUpdate();
         }
 
         function syncLogoThumbPreview() {
             const box = document.getElementById('logoPreviewThumb');
             if (!box) return;
-            if (builderState.logoData) {
-                box.innerHTML = `<img src="${esc(builderState.logoData)}" alt="Logo" class="w-full h-full object-contain p-1" />`;
-            } else {
-                box.innerHTML = `<span class="text-[11px] font-black text-stone-500 text-center px-1">ללא לוגו</span>`;
-            }
+            box.innerHTML = builderState.logoData
+                ? `<img src="${esc(builderState.logoData)}" alt="Logo" class="w-full h-full object-contain p-1" />`
+                : `<span class="text-[10px] font-black text-stone-500">ללא לוגו</span>`;
         }
 
         function activateControlTab(tabKey) {
@@ -1017,15 +883,23 @@
                 activeTabBtn.classList.add('bg-champagne', 'text-obsidian', 'font-black');
                 activeTabBtn.classList.remove('text-stone-300', 'font-extrabold');
             }
-
             document.querySelectorAll('.ctrl-panel').forEach(panel => panel.classList.add('hidden'));
             const panel = document.getElementById(`tab-panel-${tabKey}`);
             if (panel) panel.classList.remove('hidden');
         }
 
-        function applyQuickRequestChip(text) {
-            const box = document.getElementById('reqPromptText');
-            box.value = box.value ? box.value + ', ' + text : text;
+        function setSiteLayout(layoutKey) {
+            builderState.layoutStyle = layoutKey;
+            document.querySelectorAll('.layout-choice-btn').forEach(btn => {
+                btn.classList.remove('border-2', 'border-champagne', 'bg-champagne/15');
+                btn.classList.add('border', 'border-champagne/15', 'bg-obsidian');
+            });
+            const activeBtn = document.getElementById(`layout-btn-${layoutKey}`);
+            if (activeBtn) {
+                activeBtn.classList.add('border-2', 'border-champagne', 'bg-champagne/15');
+                activeBtn.classList.remove('border', 'bg-obsidian');
+            }
+            queueIframeUpdate();
         }
 
         function generateSiteFromRequests() {
@@ -1035,137 +909,30 @@
             const preservedLogo = builderState.logoData;
 
             loadPreset(niche);
-
             if (preservedLogo) {
                 builderState.logoData = preservedLogo;
                 syncLogoThumbPreview();
             }
-
             if (customName) {
                 builderState.bizName = customName;
                 document.getElementById('fldBizName').value = customName;
+                const autoSlug = cleanSlug(customName);
+                if (autoSlug && autoSlug !== 'site') {
+                    builderState.slug = autoSlug;
+                    document.getElementById('fldSiteSlug').value = autoSlug;
+                    updateShortUrlPreview();
+                }
             }
-
             if (promptText) {
-                lastCustomRequestNotes = promptText;
                 builderState.description = promptText;
                 document.getElementById('fldDescription').value = promptText;
-
-                if (promptText.includes('בהיר') || promptText.includes('שמנת') || promptText.includes('לבן')) applyColorTheme('ivory-light');
+                if (promptText.includes('בהיר') || promptText.includes('שמנת')) applyColorTheme('ivory-light');
                 else if (promptText.includes('כחול')) applyColorTheme('midnight-cobalt');
                 else if (promptText.includes('ירוק')) applyColorTheme('forest-emerald');
-                else if (promptText.includes('בורדו') || promptText.includes('אדום')) applyColorTheme('velvet-crimson');
-                else if (promptText.includes('זהב') || promptText.includes('יוקר')) applyColorTheme('obsidian-gold');
             }
-
             updateLiveIframe();
-            triggerToast('האתר נבנה מחדש לפי הבקשות שלך!');
-
-            if (window.innerWidth < 1024) {
-                setMobileScreen('preview');
-            }
-        }
-
-        function sendStudioLeadToWhatsApp(e) {
-            e.preventDefault();
-            const name = document.getElementById('leadName').value.trim();
-            const phone = document.getElementById('leadPhone').value.trim();
-            const insta = document.getElementById('leadInsta').value.trim();
-            const reqName = document.getElementById('reqBizName').value.trim() || builderState.bizName;
-            const reqNotes = document.getElementById('reqPromptText').value.trim() || lastCustomRequestNotes;
-
-            const msg = `היי! השארתי פנייה דרך STUDIO ENGINE לבניית אתר (150 ₪):
-• שם: ${name}
-• טלפון: ${phone}
-• שם העסק: ${reqName}
-• לוגו צורף באתר: ${builderState.logoData ? 'כן' : 'טרם צורף'}
-${insta ? '• אינסטגרם: ' + insta + '\n' : ''}• ערכת עיצוב: ${builderState.themeKey} (${builderState.accentColor})
-${reqNotes ? '• בקשות לעיצוב האתר: ' + reqNotes : ''}`;
-
-            window.open(`https://wa.me/${STUDIO_OWNER_WA}?text=${encodeURIComponent(msg)}`, '_blank');
-            triggerToast('מעביר את הפנייה והטיוטה לוואטסאפ...');
-        }
-
-        function openStudioInquiryModal() {
-            const m = document.getElementById('studioInquiryModal');
-            m.classList.remove('hidden');
-            m.classList.add('flex');
-        }
-
-        function closeStudioInquiryModal() {
-            const m = document.getElementById('studioInquiryModal');
-            m.classList.add('hidden');
-            m.classList.remove('flex');
-        }
-
-        function submitModalLeadToWhatsApp(e) {
-            e.preventDefault();
-            const name = document.getElementById('modalLeadName').value.trim();
-            const contact = document.getElementById('modalLeadContact').value.trim();
-            const reqName = document.getElementById('reqBizName').value.trim() || builderState.bizName;
-            const reqNotes = document.getElementById('reqPromptText').value.trim() || lastCustomRequestNotes;
-
-            const msg = `היי! אהבתי את האתר שבניתי ב-STUDIO ENGINE ואני רוצה להזמין אותו (150 ₪):
-• שם: ${name}
-• יצירת קשר: ${contact}
-• שם העסק: ${reqName}
-• לוגו: ${builderState.logoData ? 'הוטמע באתר' : 'אשלח בהמשך'}
-• עיצוב: ${builderState.themeKey} / גופן ${builderState.fontFamily}
-${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
-
-            window.open(`https://wa.me/${STUDIO_OWNER_WA}?text=${encodeURIComponent(msg)}`, '_blank');
-            closeStudioInquiryModal();
-        }
-
-        function toggleStudioBot() {
-            const win = document.getElementById('studioBotWindow');
-            if (win.classList.contains('hidden')) {
-                win.classList.remove('hidden');
-                win.classList.add('flex');
-            } else {
-                win.classList.add('hidden');
-                win.classList.remove('flex');
-            }
-        }
-
-        function appendBotBubble(text, isUser) {
-            const feed = document.getElementById('botMessagesFeed');
-            const div = document.createElement('div');
-            div.className = isUser
-                ? 'p-3 rounded-2xl rounded-tl-none bg-champagne text-obsidian font-black mr-8 leading-relaxed'
-                : 'p-3 rounded-2xl rounded-tr-none bg-[#191613] border border-champagne/15 text-stone-200 font-bold ml-4 leading-relaxed';
-            div.textContent = text;
-            feed.appendChild(div);
-            feed.scrollTop = feed.scrollHeight;
-        }
-
-        function askStudioBot(question) {
-            appendBotBubble(question, true);
-            const q = question.toLowerCase();
-
-            setTimeout(() => {
-                if (q.includes('וואטסאפ') || q.includes('שגר') || q.includes('להזמין')) {
-                    appendBotBubble('מעביר אותך עכשיו לוואטסאפ עם כל הפרטים של האתר שבנית! 🚀', false);
-                    const reqName = document.getElementById('reqBizName').value.trim() || builderState.bizName;
-                    const msg = `היי! דיברתי עם הבוט באתר STUDIO ENGINE ואני רוצה להזמין אתר עבור "${reqName}" (ערכת עיצוב: ${builderState.themeKey}).`;
-                    window.open(`https://wa.me/${STUDIO_OWNER_WA}?text=${encodeURIComponent(msg)}`, '_blank');
-                } else if (q.includes('מחיר') || q.includes('עולה') || q.includes('כמה')) {
-                    appendBotBubble('המחיר הוא 150 ₪ חד-פעמי בלבד — כולל הטמעת הלוגו שלך, תפריט, הזמנת שולחן, מערכת משלוחים וחיבור ישיר לוואטסאפ.', false);
-                } else if (q.includes('זמן') || q.includes('מוכן') || q.includes('מתי')) {
-                    appendBotBubble('האתר מוכן ועולה לאוויר תוך 24 שעות מרגע שליחת הפרטים והלוגו בוואטסאפ.', false);
-                } else {
-                    appendBotBubble('מעולה! אפשר לערוך את התפריט והמשלוחים בטאב "תפריט ומשלוחים", או להעלות לוגו בטאב "לוגו ועיצוב".', false);
-                }
-            }, 350);
-        }
-
-        function handleBotInputSubmit(e) {
-            e.preventDefault();
-            const input = document.getElementById('botUserInput');
-            const val = input.value.trim();
-            if (!val) return;
-            input.value = '';
-            askStudioBot(val);
+            triggerToast('הטיוטה מוכנה! לחץ "שמור והעתק" לפרסום הקישור');
+            if (window.innerWidth < 1024) setMobileScreen('preview');
         }
 
         function applyColorTheme(themeKey) {
@@ -1187,10 +954,36 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         function updateDesignStyle() {
             builderState.fontFamily = document.getElementById('fldFontFamily').value;
             builderState.cornerStyle = document.getElementById('fldCornerStyle').value;
-            builderState.overlayOpacity = parseInt(document.getElementById('fldOverlayOpacity').value, 10);
-            builderState.menuLayout = document.getElementById('fldMenuLayout').value;
-            document.getElementById('overlayValLabel').textContent = builderState.overlayOpacity + '%';
             queueIframeUpdate();
+        }
+
+        function syncInputsFromState() {
+            document.getElementById('fldSiteSlug').value = builderState.slug || 'kairo';
+            document.getElementById('fldBizName').value = builderState.bizName || '';
+            document.getElementById('fldBadge').value = builderState.badge || '';
+            document.getElementById('fldHeroLine1').value = builderState.heroLine1 || '';
+            document.getElementById('fldHeroLine2').value = builderState.heroLine2 || '';
+            document.getElementById('fldDescription').value = builderState.description || '';
+            document.getElementById('fldAccentPicker').value = builderState.accentColor || '#D4BEA2';
+            document.getElementById('hexCodeBadge').textContent = (builderState.accentColor || '#D4BEA2').toUpperCase();
+            document.getElementById('fldFontFamily').value = builderState.fontFamily || 'Heebo';
+            document.getElementById('fldCornerStyle').value = builderState.cornerStyle || 'pill';
+            document.getElementById('fldBgImage').value = builderState.bgImage || '';
+            document.getElementById('fldWhatsapp').value = builderState.whatsapp || '';
+            document.getElementById('fldPrimaryCta').value = builderState.primaryCta || '';
+            document.getElementById('fldDeliveryCta').value = builderState.deliveryCta || '';
+            document.getElementById('fldSecondaryCta').value = builderState.secondaryCta || '';
+            document.getElementById('fldDeliveryInfo').value = builderState.deliveryInfo || '';
+            document.getElementById('fldHoursWeekdays').value = builderState.hoursWeekdays || '';
+            document.getElementById('fldHoursWeekend').value = builderState.hoursWeekend || '';
+            document.getElementById('fldAddress').value = builderState.address || '';
+            document.getElementById('fldMenuHeading').value = builderState.menuHeading || '';
+
+            updateShortUrlPreview();
+            setSiteLayout(builderState.layoutStyle || 'editorial-split');
+            syncLogoThumbPreview();
+            renderCuratedNicheThumbnails();
+            renderMenuRowsEditor();
         }
 
         function loadPreset(key) {
@@ -1208,44 +1001,17 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                 activeCard.classList.remove('border', 'bg-obsidian');
             }
 
-            document.getElementById('fldBizName').value = builderState.bizName;
-            document.getElementById('fldBadge').value = builderState.badge;
-            document.getElementById('fldHeroLine1').value = builderState.heroLine1;
-            document.getElementById('fldHeroLine2').value = builderState.heroLine2;
-            document.getElementById('fldDescription').value = builderState.description;
-            document.getElementById('fldLogoSize').value = builderState.logoSize || 38;
-            document.getElementById('logoSizeLabel').textContent = (builderState.logoSize || 38) + 'px';
-            document.getElementById('fldLogoShape').value = builderState.logoShape || 'circle';
-            document.getElementById('fldShowNameNextToLogo').checked = builderState.showNameNextToLogo !== false;
-            document.getElementById('fldAccentPicker').value = builderState.accentColor;
-            document.getElementById('hexCodeBadge').textContent = builderState.accentColor.toUpperCase();
-            document.getElementById('fldFontFamily').value = builderState.fontFamily || 'Heebo';
-            document.getElementById('fldCornerStyle').value = builderState.cornerStyle || 'pill';
-            document.getElementById('fldOverlayOpacity').value = builderState.overlayOpacity || 70;
-            document.getElementById('overlayValLabel').textContent = (builderState.overlayOpacity || 70) + '%';
-            document.getElementById('fldMenuLayout').value = builderState.menuLayout || 'cards';
-            document.getElementById('fldBgImage').value = builderState.bgImage;
-            document.getElementById('fldWhatsapp').value = builderState.whatsapp;
-            document.getElementById('fldPrimaryCta').value = builderState.primaryCta;
-            document.getElementById('fldDeliveryCta').value = builderState.deliveryCta;
-            document.getElementById('fldSecondaryCta').value = builderState.secondaryCta;
-            document.getElementById('fldDeliveryInfo').value = builderState.deliveryInfo;
-            document.getElementById('fldAddress').value = builderState.address;
-            document.getElementById('fldMenuHeading').value = builderState.menuHeading;
-            document.getElementById('browserAddressSlug').textContent = `https://${builderState.slug}.github.io`;
-
-            syncLogoThumbPreview();
-            renderCuratedNicheThumbnails();
-            renderMenuRowsEditor();
+            syncInputsFromState();
             updateLiveIframe();
         }
 
         function renderCuratedNicheThumbnails() {
             const container = document.getElementById('nicheThumbsContainer');
-            container.innerHTML = builderState.curatedImages.map((url, idx) => `
+            const imgs = builderState.curatedImages || studioPresets.restaurant.curatedImages;
+            container.innerHTML = imgs.map((url, idx) => `
                 <button type="button" onclick="pickCuratedImage('${url}')"
                         class="relative aspect-square rounded-2xl overflow-hidden border-2 ${builderState.bgImage === url ? 'border-champagne scale-[1.03]' : 'border-white/15 opacity-75 hover:opacity-100'} transition cursor-pointer">
-                    <img src="${url}" alt="תמונה מומלצת ${idx + 1}" class="w-full h-full object-cover" />
+                    <img src="${url}" alt="תמונה ${idx + 1}" class="w-full h-full object-cover" />
                 </button>
             `).join('');
         }
@@ -1259,23 +1025,23 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
         function renderMenuRowsEditor() {
             const container = document.getElementById('menuRowsContainer');
-            container.innerHTML = builderState.menuItems.map((item, idx) => `
-                <div class="p-4 rounded-2xl bg-obsidian border border-champagne/15 space-y-2.5">
+            container.innerHTML = (builderState.menuItems || []).map((item, idx) => `
+                <div class="p-3.5 rounded-2xl bg-obsidian border border-champagne/15 space-y-2">
                     <div class="flex items-center gap-2">
-                        <input type="text" value="${esc(item.name)}" placeholder="שם המנה / השירות"
+                        <input type="text" value="${esc(item.name)}" placeholder="שם הפריט"
                                oninput="editMenuRow(${idx}, 'name', this.value)"
                                class="flex-1 studio-field px-3 py-2 rounded-xl text-xs" />
                         <input type="number" value="${esc(item.price)}" placeholder="מחיר"
                                oninput="editMenuRow(${idx}, 'price', Number(this.value) || 0)"
-                               class="w-24 studio-field px-2.5 py-2 rounded-xl text-xs text-champagne text-center" />
-                        <button type="button" onclick="deleteMenuRow(${idx})" title="מחק פריט"
-                                class="w-9 h-9 rounded-xl bg-white/5 hover:bg-red-500/20 text-stone-400 hover:text-red-400 flex items-center justify-center text-xs font-black transition cursor-pointer shrink-0">
+                               class="w-20 studio-field px-2 py-2 rounded-xl text-xs text-champagne text-center" />
+                        <button type="button" onclick="deleteMenuRow(${idx})"
+                                class="w-8 h-8 rounded-xl bg-white/5 hover:bg-red-500/20 text-stone-400 hover:text-red-400 flex items-center justify-center text-xs font-black cursor-pointer shrink-0">
                             ✕
                         </button>
                     </div>
                     <input type="text" value="${esc(item.desc)}" placeholder="תיאור קצר"
                            oninput="editMenuRow(${idx}, 'desc', this.value)"
-                           class="w-full studio-field px-3 py-2 rounded-xl text-xs text-stone-300" />
+                           class="w-full studio-field px-3 py-1.5 rounded-xl text-xs text-stone-300" />
                 </div>
             `).join('');
         }
@@ -1286,21 +1052,13 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         }
 
         function addMenuServiceRow() {
-            builderState.menuItems.push({
-                name: 'מנה / פריט חדש',
-                price: 120,
-                desc: 'פירוט קצר על המנה או השירות'
-            });
+            builderState.menuItems.push({ name: 'מנה / שירות חדש', price: 95, desc: 'תיאור קצר ואיכותי' });
             renderMenuRowsEditor();
             queueIframeUpdate();
-            triggerToast('נוסף פריט חדש לתפריט ולמשלוחים');
         }
 
         function deleteMenuRow(idx) {
-            if (builderState.menuItems.length <= 1) {
-                triggerToast('חייב להישאר לפחות פריט אחד בתפריט');
-                return;
-            }
+            if (builderState.menuItems.length <= 1) return;
             builderState.menuItems.splice(idx, 1);
             renderMenuRowsEditor();
             queueIframeUpdate();
@@ -1318,6 +1076,8 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             builderState.deliveryCta = document.getElementById('fldDeliveryCta').value;
             builderState.secondaryCta = document.getElementById('fldSecondaryCta').value;
             builderState.deliveryInfo = document.getElementById('fldDeliveryInfo').value;
+            builderState.hoursWeekdays = document.getElementById('fldHoursWeekdays').value;
+            builderState.hoursWeekend = document.getElementById('fldHoursWeekend').value;
             builderState.address = document.getElementById('fldAddress').value;
             builderState.menuHeading = document.getElementById('fldMenuHeading').value;
             queueIframeUpdate();
@@ -1329,21 +1089,23 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         }
 
         // =====================================================================
-        // SELF-CONTAINED CLIENT WEBSITE HTML COMPILER
-        // (CLEAN MENU + DEDICATED TABLE BOOKING + DEDICATED DELIVERIES SECTION)
+        // CLIENT WEBSITE HTML COMPILER (3 DIVERSE LAYOUTS + HOURS + WAZE)
         // =====================================================================
         function compileStandaloneWebsite(s) {
             const bizName = esc(s.bizName || 'שם העסק');
-            const badge = esc(s.badge || 'סטודיו בוטיק');
+            const badge = esc(s.badge || 'בוטיק נבחר');
             const line1 = esc(s.heroLine1 || 'חוויה ברמה אחרת.');
             const line2 = esc(s.heroLine2 || 'בסטנדרט גבוה.');
             const desc = esc(s.description || '');
             const primaryCta = esc(s.primaryCta || 'הזמנת שולחן');
             const deliveryCta = esc(s.deliveryCta || 'הזמנת משלוח');
-            const secondaryCta = esc(s.secondaryCta || 'תפריט המסעדה');
+            const secondaryCta = esc(s.secondaryCta || 'תפריט');
             const deliveryInfo = esc(s.deliveryInfo || 'משלוחים חמים עד הבית');
+            const hoursWeekdays = esc(s.hoursWeekdays || 'א׳–ה׳: 12:00 – 23:30');
+            const hoursWeekend = esc(s.hoursWeekend || 'ו׳: 11:30 – 16:00');
             const address = esc(s.address || 'תל אביב');
-            const menuHeading = esc(s.menuHeading || 'תפריט ומחירון');
+            const wazeLink = `https://waze.com/ul?q=${encodeURIComponent(s.address || 'תל אביב')}&navigate=yes`;
+            const menuHeading = esc(s.menuHeading || 'התפריט שלנו');
 
             const theme = colorThemes[s.themeKey] || colorThemes['obsidian-gold'];
             const accent = /^#[0-9A-Fa-f]{6}$/.test(s.accentColor) ? s.accentColor : theme.accent;
@@ -1356,65 +1118,140 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
             const fontName = ['Heebo', 'Rubik', 'Frank Ruhl Libre'].includes(s.fontFamily) ? s.fontFamily : 'Heebo';
             const radiusClass = s.cornerStyle === 'sharp' ? 'rounded-none' : (s.cornerStyle === 'rounded' ? 'rounded-2xl' : 'rounded-full');
-            const cardRadiusClass = s.cornerStyle === 'sharp' ? 'rounded-none' : 'rounded-2xl';
-            const overlayAlpha = Math.min(0.95, Math.max(0.3, (s.overlayOpacity || 70) / 100));
-
+            const cardRadiusClass = s.cornerStyle === 'sharp' ? 'rounded-none' : 'rounded-3xl';
             const bgImg = esc(s.bgImage || studioPresets.restaurant.bgImage);
             const waNumber = sanitizeWaPhone(s.whatsapp);
+            const layout = s.layoutStyle || 'editorial-split';
 
             const logoSrc = s.logoData ? esc(s.logoData) : '';
-            const logoH = Math.min(64, Math.max(26, parseInt(s.logoSize, 10) || 38));
-            const logoFrameClasses = s.logoShape === 'circle'
-                ? 'rounded-full object-cover border border-white/20 bg-black/40'
-                : (s.logoShape === 'rounded'
-                    ? 'rounded-xl object-cover border border-white/20 bg-black/40'
-                    : 'object-contain');
+            const logoMarkup = logoSrc
+                ? `<img src="${logoSrc}" alt="${bizName}" class="w-9 h-9 rounded-full object-cover border border-white/20 shrink-0" />`
+                : `<span class="w-2.5 h-2.5 rounded-full shrink-0" style="background: var(--accent)"></span>`;
 
-            const headerBrandMarkup = logoSrc
-                ? `<img src="${logoSrc}" alt="${bizName}" style="height:${logoH}px; width:${s.logoShape === 'clean' ? 'auto' : logoH + 'px'};" class="${logoFrameClasses} shrink-0" />
-                   ${s.showNameNextToLogo !== false ? `<span class="text-base sm:text-xl font-black text-white truncate">${bizName}</span>` : ''}`
-                : `<span class="w-2.5 h-2.5 rounded-full shrink-0" style="background: var(--accent)"></span>
-                   <span class="text-base sm:text-xl font-black text-white truncate">${bizName}</span>`;
-
-            const footerLogoMarkup = logoSrc
-                ? `<img src="${logoSrc}" alt="${bizName}" style="height:${Math.round(logoH * 1.25)}px; width:${s.logoShape === 'clean' ? 'auto' : Math.round(logoH * 1.25) + 'px'};" class="${logoFrameClasses} mx-auto mb-2" />`
-                : '';
-
-            // 1. PURE CLEAN MENU ITEMS (NO "הזמן ←" BUTTON ON EACH ITEM!)
-            const pureMenuItemsHtml = (s.menuItems || []).map(item => {
-                const priceNum = Number(item.price) || 0;
-                if (s.menuLayout === 'editorial') {
-                    return `
-                    <div class="py-4 border-b ${isLight ? 'border-stone-200' : 'border-white/10'} flex items-baseline justify-between gap-4">
-                        <div class="space-y-1">
-                            <h4 class="text-base sm:text-lg font-black" style="color:${textCol}">${esc(item.name)}</h4>
-                            <p class="text-xs font-bold leading-relaxed" style="color:${mutedCol}">${esc(item.desc)}</p>
+            let heroSectionHtml = '';
+            if (layout === 'centered-luxury') {
+                heroSectionHtml = `
+                <section id="top" class="relative min-h-[92dvh] flex flex-col items-center justify-center text-center px-5 pt-28 pb-16 overflow-hidden">
+                    <div class="absolute inset-0 z-0">
+                        <img src="${bgImg}" alt="${bizName}" class="w-full h-full object-cover scale-105 opacity-35" />
+                        <div class="absolute inset-0" style="background: radial-gradient(circle at center, transparent 0%, ${bgCol} 82%)"></div>
+                    </div>
+                    <div class="relative z-10 max-w-2xl mx-auto space-y-5">
+                        ${logoSrc ? `<img src="${logoSrc}" alt="${bizName}" class="w-20 h-20 rounded-full object-cover mx-auto border-2 shadow-2xl" style="border-color: var(--accent)" />` : ''}
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 ${radiusClass} border text-xs font-black" style="border-color: var(--accent); color: var(--accent)">
+                            <span>${badge}</span>
                         </div>
-                        <div class="text-base sm:text-lg font-black shrink-0" style="color: var(--accent)">${priceNum} ₪</div>
-                    </div>`;
-                }
-                return `
+                        <h1 class="text-4xl sm:text-6xl font-black leading-[1.06]" style="color:${textCol}">
+                            ${line1}<br /><span style="color: var(--accent)">${line2}</span>
+                        </h1>
+                        <p class="text-sm sm:text-lg font-bold leading-relaxed max-w-lg mx-auto" style="color:${mutedCol}">${desc}</p>
+                        <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                            <button type="button" onclick="openTableModal()" class="py-3.5 px-7 ${radiusClass} text-sm font-black shadow-xl cursor-pointer" style="background: var(--accent); color: ${btnTextCol}">
+                                ${primaryCta} &larr;
+                            </button>
+                            <a href="#deliverySection" class="py-3.5 px-6 ${radiusClass} border text-sm font-black" style="border-color: var(--accent); color:${textCol}">
+                                ${deliveryCta}
+                            </a>
+                            <a href="#menuSection" class="py-3.5 px-6 ${radiusClass} bg-white/10 text-sm font-black" style="color:${textCol}">
+                                ${secondaryCta}
+                            </a>
+                        </div>
+                    </div>
+                </section>`;
+            } else if (layout === 'bento-modern') {
+                heroSectionHtml = `
+                <section id="top" class="max-w-6xl mx-auto px-4 sm:px-8 pt-28 pb-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                        <div class="lg:col-span-7 p-7 sm:p-10 ${cardRadiusClass} border ${isLight ? 'border-stone-200 shadow-lg' : 'border-white/10'} flex flex-col justify-between gap-6" style="background:${surfaceCol}">
+                            <div class="space-y-4">
+                                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 ${radiusClass} text-xs font-black" style="background: rgba(212,190,162,0.12); color: var(--accent)">
+                                    <span>${badge}</span>
+                                </div>
+                                <h1 class="text-4xl sm:text-5xl font-black leading-[1.08]" style="color:${textCol}">
+                                    ${line1} <span style="color: var(--accent)">${line2}</span>
+                                </h1>
+                                <p class="text-sm sm:text-base font-bold leading-relaxed" style="color:${mutedCol}">${desc}</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2.5">
+                                <button type="button" onclick="openTableModal()" class="py-3.5 px-6 ${radiusClass} text-xs sm:text-sm font-black cursor-pointer shadow-lg" style="background: var(--accent); color: ${btnTextCol}">
+                                    ${primaryCta} &larr;
+                                </button>
+                                <a href="#deliverySection" class="py-3.5 px-6 ${radiusClass} border ${isLight ? 'border-stone-300' : 'border-white/15'} text-xs sm:text-sm font-black" style="color:${textCol}">
+                                    ${deliveryCta}
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 grid grid-rows-3 gap-4">
+                            <div class="row-span-2 ${cardRadiusClass} overflow-hidden relative min-h-[230px] border ${isLight ? 'border-stone-200' : 'border-white/10'}">
+                                <img src="${bgImg}" alt="${bizName}" class="w-full h-full object-cover" />
+                            </div>
+                            <div class="p-5 ${cardRadiusClass} border ${isLight ? 'border-stone-200' : 'border-white/10'} flex items-center justify-between gap-3" style="background:${surfaceCol}">
+                                <div>
+                                    <div class="text-[11px] font-black" style="color: var(--accent)">שעות פעילות</div>
+                                    <div class="text-xs font-black mt-0.5" style="color:${textCol}">${hoursWeekdays}</div>
+                                    <div class="text-[11px] font-bold" style="color:${mutedCol}">${hoursWeekend}</div>
+                                </div>
+                                <a href="${wazeLink}" target="_blank" class="px-4 py-2.5 ${radiusClass} text-xs font-black shrink-0" style="background: var(--accent); color: ${btnTextCol}">
+                                    נווט ב-Waze
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>`;
+            } else {
+                heroSectionHtml = `
+                <section id="top" class="relative min-h-[90dvh] w-full overflow-hidden flex flex-col justify-center pt-28 pb-12 px-5 sm:px-8">
+                    <div class="absolute inset-0 z-0 overflow-hidden">
+                        <img src="${bgImg}" alt="${bizName}" class="w-full h-full object-cover object-center scale-105" />
+                        <div class="absolute inset-0" style="background: linear-gradient(to left, rgba(9,8,7,0.92) 0%, rgba(9,8,7,0.68) 55%, rgba(9,8,7,0.35) 100%)"></div>
+                        <div class="absolute inset-0" style="background: linear-gradient(to top, ${bgCol} 0%, transparent 45%, rgba(9,8,7,0.7) 100%)"></div>
+                    </div>
+                    <div class="relative z-10 max-w-6xl mx-auto w-full">
+                        <div class="max-w-xl space-y-4">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 ${radiusClass} glass-luxury text-[11px] font-black" style="color: var(--accent)">
+                                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent)"></span>
+                                <span>${badge}</span>
+                            </div>
+                            <h1 class="text-4xl sm:text-6xl font-black text-white leading-[1.06]">
+                                ${line1}<br /><span style="color: var(--accent)">${line2}</span>
+                            </h1>
+                            <p class="text-stone-200 text-sm sm:text-lg font-bold leading-relaxed max-w-md">${desc}</p>
+                            <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 pt-3">
+                                <button type="button" onclick="openTableModal()" class="py-3.5 px-6 ${radiusClass} text-sm font-black shadow-xl cursor-pointer text-center" style="background: var(--accent); color: ${btnTextCol}">
+                                    ${primaryCta} &larr;
+                                </button>
+                                <a href="#deliverySection" class="py-3.5 px-6 ${radiusClass} glass-luxury text-white text-sm font-black text-center hover:bg-white/10 transition">
+                                    ${deliveryCta}
+                                </a>
+                                <a href="#menuSection" class="py-3.5 px-6 ${radiusClass} bg-white/10 text-white text-sm font-black text-center hover:bg-white/15 transition">
+                                    ${secondaryCta}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>`;
+            }
+
+            const pureMenuItemsHtml = (s.menuItems || []).map(item => `
                 <div class="p-5 ${cardRadiusClass} border ${isLight ? 'border-stone-200 shadow-sm' : 'border-white/10'} flex flex-col justify-between gap-2" style="background:${surfaceCol}">
                     <div class="flex items-baseline justify-between gap-3">
                         <h4 class="text-base sm:text-lg font-black" style="color:${textCol}">${esc(item.name)}</h4>
-                        <span class="text-base sm:text-lg font-black shrink-0" style="color: var(--accent)">${priceNum} ₪</span>
+                        <span class="text-base sm:text-lg font-black shrink-0" style="color: var(--accent)">${Number(item.price) || 0} ₪</span>
                     </div>
                     <p class="text-xs font-bold leading-relaxed" style="color:${mutedCol}">${esc(item.desc)}</p>
-                </div>`;
-            }).join('');
+                </div>
+            `).join('');
 
-            // 2. DEDICATED DELIVERY ORDER ITEMS (WITH QUANTITY +/- COUNTER)
-            const deliveryItemsHtml = (s.menuItems || []).map((item, idx) => {
-                const priceNum = Number(item.price) || 0;
-                return `
+            const deliveryItemsHtml = (s.menuItems || []).map((item, idx) => `
                 <div class="p-4 ${cardRadiusClass} border ${isLight ? 'border-stone-200 shadow-sm' : 'border-white/10'} flex items-center justify-between gap-3" style="background:${surfaceCol}">
                     <div class="min-w-0">
                         <div class="text-sm font-black truncate" style="color:${textCol}">${esc(item.name)}</div>
-                        <div class="text-xs font-black mt-0.5" style="color: var(--accent)">${priceNum} ₪</div>
+                        <div class="text-xs font-black mt-0.5" style="color: var(--accent)">${Number(item.price) || 0} ₪</div>
                     </div>
                     <div class="flex items-center gap-2 shrink-0">
                         <button type="button" onclick="changeDeliveryQty(${idx}, -1)"
-                                class="w-8 h-8 rounded-full border ${isLight ? 'border-stone-300 text-stone-700' : 'border-white/20 text-white'} font-black flex items-center justify-center cursor-pointer hover:opacity-80">
+                                class="w-8 h-8 rounded-full border ${isLight ? 'border-stone-300 text-stone-700' : 'border-white/20 text-white'} font-black flex items-center justify-center cursor-pointer">
                             -
                         </button>
                         <span id="deliv-qty-${idx}" class="w-5 text-center text-xs font-black" style="color:${textCol}">0</span>
@@ -1424,8 +1261,8 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                             +
                         </button>
                     </div>
-                </div>`;
-            }).join('');
+                </div>
+            `).join('');
 
             const deliveryDataPayload = (s.menuItems || []).map(item => ({
                 name: item.name || 'פריט',
@@ -1443,53 +1280,28 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
     <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@700;800;900&family=Rubik:wght@600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"><\/script>
     <style>
-        :root {
-            --bg-main: ${bgCol};
-            --accent: ${accent};
-        }
-        * {
-            font-family: '${fontName}', sans-serif !important;
-            letter-spacing: -0.02em;
-            -webkit-tap-highlight-color: transparent;
-        }
-        html, body {
-            background-color: var(--bg-main);
-            color: ${textCol};
-            font-weight: 800;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        .hero-viewport {
-            min-height: 92vh;
-            min-height: 92dvh;
-        }
-        .glass-luxury {
-            background: rgba(16, 14, 12, 0.86);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-        }
+        :root { --bg-main: ${bgCol}; --accent: ${accent}; }
+        * { font-family: '${fontName}', sans-serif !important; letter-spacing: -0.02em; -webkit-tap-highlight-color: transparent; }
+        html, body { background-color: var(--bg-main); color: ${textCol}; font-weight: 800; overflow-x: hidden; scroll-behavior: smooth; }
+        .glass-luxury { background: rgba(16, 14, 12, 0.86); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.14); }
     </style>
 </head>
 <body class="pb-24 sm:pb-0">
 
-    <!-- Floating Header with Quick Navigation (Menu / Deliveries / Table Booking) -->
     <header class="fixed top-0 inset-x-0 z-40 px-4 sm:px-8 pt-10 sm:pt-5">
         <nav class="max-w-6xl mx-auto glass-luxury ${radiusClass} px-5 sm:px-7 py-2.5 flex items-center justify-between shadow-2xl">
             <a href="#top" class="flex items-center gap-3 truncate">
-                ${headerBrandMarkup}
+                ${logoMarkup}
+                <span class="text-base sm:text-xl font-black text-white truncate">${bizName}</span>
             </a>
 
             <div class="hidden md:flex items-center gap-6 text-xs font-black text-stone-200">
                 <a href="#menuSection" class="hover:text-white transition">${secondaryCta}</a>
                 <a href="#deliverySection" class="hover:text-white transition">${deliveryCta}</a>
+                <a href="#hoursSection" class="hover:text-white transition">שעות ומיקום</a>
             </div>
 
             <div class="hidden sm:flex items-center gap-2 shrink-0">
-                <a href="#deliverySection"
-                   class="px-4 py-2 ${radiusClass} bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-black text-white transition">
-                    ${deliveryCta}
-                </a>
                 <button type="button" onclick="openTableModal()"
                         class="inline-flex items-center gap-1.5 px-5 py-2 ${radiusClass} text-xs font-black cursor-pointer"
                         style="background: var(--accent); color: ${btnTextCol}">
@@ -1500,55 +1312,9 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="top" class="relative hero-viewport w-full overflow-hidden flex flex-col justify-center pt-28 pb-12 px-5 sm:px-8">
-        <div class="absolute inset-0 z-0 overflow-hidden">
-            <img src="${bgImg}"
-                 onerror="this.src='https://placehold.co/1600x1000/12100E/D4BEA2?text=${encodeURIComponent(bizName)}'"
-                 alt="${bizName}"
-                 class="w-full h-full object-cover object-center scale-105" />
-            <div class="absolute inset-0" style="background: linear-gradient(to left, rgba(9,8,7,${overlayAlpha + 0.15}) 0%, rgba(9,8,7,${overlayAlpha}) 55%, rgba(9,8,7,${Math.max(0.25, overlayAlpha - 0.3)}) 100%)"></div>
-            <div class="absolute inset-0" style="background: linear-gradient(to top, ${bgCol} 0%, transparent 50%, rgba(9,8,7,0.7) 100%)"></div>
-        </div>
+    ${heroSectionHtml}
 
-        <div class="relative z-10 max-w-6xl mx-auto w-full">
-            <div class="max-w-xl space-y-4">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 ${radiusClass} glass-luxury text-[11px] font-black" style="color: var(--accent)">
-                    <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent)"></span>
-                    <span>${badge}</span>
-                </div>
-
-                <h1 class="text-4xl sm:text-6xl font-black text-white leading-[1.06]">
-                    ${line1}<br />
-                    <span style="color: var(--accent)">${line2}</span>
-                </h1>
-
-                <p class="text-stone-200 text-sm sm:text-lg font-bold leading-relaxed max-w-md">
-                    ${desc}
-                </p>
-
-                <!-- 3 Clear Action Buttons: Table Booking, Deliveries, Menu -->
-                <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 pt-3">
-                    <button type="button" onclick="openTableModal()"
-                            class="py-3.5 px-6 ${radiusClass} text-sm font-black shadow-xl cursor-pointer text-center"
-                            style="background: var(--accent); color: ${btnTextCol}">
-                        ${primaryCta} &larr;
-                    </button>
-                    <a href="#deliverySection"
-                       class="py-3.5 px-6 ${radiusClass} glass-luxury text-white text-sm font-black text-center hover:bg-white/10 transition">
-                        ${deliveryCta}
-                    </a>
-                    <a href="#menuSection"
-                       class="py-3.5 px-6 ${radiusClass} bg-white/5 border border-white/15 text-stone-200 text-sm font-black text-center hover:bg-white/10 transition">
-                        ${secondaryCta}
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 1: PURE CLEAN MENU (NO BUTTON ON EVERY ITEM) -->
-    <section id="menuSection" class="max-w-5xl mx-auto px-4 sm:px-8 py-14 sm:py-20 space-y-6">
+    <section id="menuSection" class="max-w-5xl mx-auto px-4 sm:px-8 py-12 sm:py-16 space-y-6">
         <div class="flex flex-wrap items-end justify-between gap-3 border-b ${isLight ? 'border-stone-300' : 'border-white/10'} pb-4">
             <div>
                 <span class="text-xs font-black block mb-1" style="color: var(--accent)">התפריט שלנו</span>
@@ -1561,13 +1327,12 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             </button>
         </div>
 
-        <div class="${s.menuLayout === 'editorial' ? 'divide-y divide-white/5' : 'grid grid-cols-1 md:grid-cols-2 gap-4'}">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             ${pureMenuItemsHtml}
         </div>
     </section>
 
-    <!-- SECTION 2: DEDICATED DELIVERIES ORDERING AREA -->
-    <section id="deliverySection" class="max-w-5xl mx-auto px-4 sm:px-8 pb-20">
+    <section id="deliverySection" class="max-w-5xl mx-auto px-4 sm:px-8 pb-14">
         <div class="p-6 sm:p-8 ${cardRadiusClass} border ${isLight ? 'border-stone-300 shadow-lg' : 'border-white/15'} space-y-6" style="background:${surfaceCol}">
             <div class="flex flex-wrap items-center justify-between gap-3 border-b ${isLight ? 'border-stone-200' : 'border-white/10'} pb-4">
                 <div>
@@ -1579,29 +1344,18 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                 </span>
             </div>
 
-            <!-- Select Items & Quantities -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 ${deliveryItemsHtml}
             </div>
 
-            <!-- Delivery Address & Customer Details -->
             <form onsubmit="submitDeliveryOrder(event)" class="pt-2 space-y-3">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div>
-                        <label class="block text-xs font-black mb-1" style="color:${mutedCol}">שם מלא</label>
-                        <input type="text" id="delivName" required placeholder="השם שלך"
-                               class="w-full px-3.5 py-2.5 rounded-xl border ${isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-[#090807] border-white/15 text-white'} text-xs font-bold" />
-                    </div>
-                    <div>
-                        <label class="block text-xs font-black mb-1" style="color:${mutedCol}">כתובת מלאה למשלוח</label>
-                        <input type="text" id="delivAddress" required placeholder="רחוב, מספר בית, דירה ועיר"
-                               class="w-full px-3.5 py-2.5 rounded-xl border ${isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-[#090807] border-white/15 text-white'} text-xs font-bold" />
-                    </div>
-                    <div>
-                        <label class="block text-xs font-black mb-1" style="color:${mutedCol}">הערות לשליח</label>
-                        <input type="text" id="delivNote" placeholder="קוד בכניסה / בלי בצל..."
-                               class="w-full px-3.5 py-2.5 rounded-xl border ${isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-[#090807] border-white/15 text-white'} text-xs font-bold" />
-                    </div>
+                    <input type="text" id="delivName" required placeholder="שם מלא"
+                           class="w-full px-3.5 py-2.5 rounded-xl border ${isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-[#090807] border-white/15 text-white'} text-xs font-bold" />
+                    <input type="text" id="delivAddress" required placeholder="כתובת מלאה למשלוח"
+                           class="w-full px-3.5 py-2.5 rounded-xl border ${isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-[#090807] border-white/15 text-white'} text-xs font-bold" />
+                    <input type="text" id="delivNote" placeholder="הערות לשליח (קוד / דירה)"
+                           class="w-full px-3.5 py-2.5 rounded-xl border ${isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-[#090807] border-white/15 text-white'} text-xs font-bold" />
                 </div>
 
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
@@ -1618,14 +1372,39 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t ${isLight ? 'border-stone-300' : 'border-white/10'} py-10 px-4 text-center space-y-2">
-        ${footerLogoMarkup}
-        <div class="text-lg font-black" style="color:${textCol}">${bizName}</div>
-        <div class="text-xs font-bold" style="color:${mutedCol}">${address}</div>
+    <section id="hoursSection" class="max-w-5xl mx-auto px-4 sm:px-8 pb-16">
+        <div class="p-6 sm:p-8 ${cardRadiusClass} border ${isLight ? 'border-stone-300 shadow-md' : 'border-white/15'} grid grid-cols-1 md:grid-cols-2 gap-6 items-center" style="background:${surfaceCol}">
+            <div class="space-y-2">
+                <span class="text-xs font-black" style="color: var(--accent)">שעות פעילות</span>
+                <h3 class="text-2xl font-black" style="color:${textCol}">מתי אנחנו פתוחים?</h3>
+                <div class="text-sm font-black pt-1" style="color:${textCol}">${hoursWeekdays}</div>
+                <div class="text-sm font-bold" style="color:${mutedCol}">${hoursWeekend}</div>
+            </div>
+
+            <div class="space-y-3 md:border-r ${isLight ? 'md:border-stone-200' : 'md:border-white/10'} md:pr-6">
+                <span class="text-xs font-black" style="color: var(--accent)">הגעה למקום</span>
+                <div class="text-lg font-black" style="color:${textCol}">${address}</div>
+                <div class="flex flex-wrap gap-2.5 pt-1">
+                    <a href="${wazeLink}" target="_blank"
+                       class="px-5 py-2.5 ${radiusClass} text-xs font-black shadow cursor-pointer"
+                       style="background: var(--accent); color: ${btnTextCol}">
+                        פתח ניווט ב-Waze &larr;
+                    </a>
+                    <button type="button" onclick="openTableModal()"
+                            class="px-5 py-2.5 ${radiusClass} border ${isLight ? 'border-stone-300' : 'border-white/20'} text-xs font-black cursor-pointer"
+                            style="color:${textCol}">
+                        ${primaryCta}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t ${isLight ? 'border-stone-300' : 'border-white/10'} py-8 px-4 text-center space-y-1.5">
+        <div class="text-base font-black" style="color:${textCol}">${bizName}</div>
+        <div class="text-xs font-bold" style="color:${mutedCol}">${address} • ${hoursWeekdays}</div>
     </footer>
 
-    <!-- Sticky Mobile Bottom Bar: Table Booking + Deliveries -->
     <div class="fixed bottom-0 inset-x-0 z-40 sm:hidden glass-luxury border-t border-white/15 px-3 py-2.5">
         <div class="grid grid-cols-3 gap-2">
             <button type="button" onclick="openTableModal()"
@@ -1637,14 +1416,13 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                class="py-3 px-2 ${radiusClass} bg-white/10 border border-white/15 text-white text-[11px] font-black flex items-center justify-center text-center">
                 ${deliveryCta}
             </a>
-            <a href="#menuSection"
+            <a href="#hoursSection"
                class="py-3 px-2 ${radiusClass} bg-white/5 border border-white/10 text-stone-200 text-[11px] font-black flex items-center justify-center text-center">
-                ${secondaryCta}
+                שעות ו-Waze
             </a>
         </div>
     </div>
 
-    <!-- DEDICATED TABLE / APPOINTMENT BOOKING MODAL -->
     <div id="tableModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center sm:p-4 bg-black/85 backdrop-blur-md">
         <div class="glass-luxury rounded-t-3xl sm:rounded-3xl max-w-md w-full p-6 pb-8 sm:p-7 shadow-2xl relative border border-white/15">
             <div class="w-10 h-1.5 rounded-full bg-white/25 mx-auto mb-3 sm:hidden"></div>
@@ -1656,37 +1434,15 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                 </div>
                 <form onsubmit="submitTableBooking(event)" class="space-y-3">
                     <div class="grid grid-cols-2 gap-2.5">
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1">שם מלא</label>
-                            <input type="text" id="tblName" required placeholder="השם שלך"
-                                   class="w-full px-3.5 py-2.5 rounded-xl bg-[#090807] border border-white/15 text-xs font-bold text-white" />
-                        </div>
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1">כמות אנשים / פרטים</label>
-                            <input type="text" id="tblGuests" required placeholder="לדוגמה: 4 אנשים"
-                                   class="w-full px-3.5 py-2.5 rounded-xl bg-[#090807] border border-white/15 text-xs font-bold text-white" />
-                        </div>
+                        <input type="text" id="tblName" required placeholder="שם מלא" class="w-full px-3.5 py-2.5 rounded-xl bg-[#090807] border border-white/15 text-xs font-bold text-white" />
+                        <input type="text" id="tblGuests" required placeholder="כמות אנשים (לדוגמה: 4)" class="w-full px-3.5 py-2.5 rounded-xl bg-[#090807] border border-white/15 text-xs font-bold text-white" />
                     </div>
                     <div class="grid grid-cols-2 gap-2.5">
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1">יום / תאריך</label>
-                            <input type="text" id="tblDate" required placeholder="היום / מחר"
-                                   class="w-full px-3.5 py-2.5 rounded-xl bg-[#090807] border border-white/15 text-xs font-bold text-white" />
-                        </div>
-                        <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1">שעה מבוקשת</label>
-                            <input type="text" id="tblTime" required placeholder="20:30"
-                                   class="w-full px-3.5 py-2.5 rounded-xl bg-[#090807] border border-white/15 text-xs font-bold text-white" />
-                        </div>
+                        <input type="text" id="tblDate" required placeholder="יום / תאריך" class="w-full px-3.5 py-2.5 rounded-xl bg-[#090807] border border-white/15 text-xs font-bold text-white" />
+                        <input type="text" id="tblTime" required placeholder="שעה (לדוגמה: 20:30)" class="w-full px-3.5 py-2.5 rounded-xl bg-[#090807] border border-white/15 text-xs font-bold text-white" />
                     </div>
-                    <div>
-                        <label class="block text-xs font-black text-stone-300 mb-1">הערות מיוחדות (אופציונלי)</label>
-                        <input type="text" id="tblNote" placeholder="שולחן בחוץ / חוגגים יום הולדת"
-                               class="w-full px-3.5 py-2.5 rounded-xl bg-[#090807] border border-white/15 text-xs font-bold text-white" />
-                    </div>
-                    <button type="submit"
-                            class="w-full py-3.5 ${radiusClass} text-sm font-black shadow-lg cursor-pointer mt-2"
-                            style="background: var(--accent); color: ${btnTextCol}">
+                    <input type="text" id="tblNote" placeholder="הערות מיוחדות (אופציונלי)" class="w-full px-3.5 py-2.5 rounded-xl bg-[#090807] border border-white/15 text-xs font-bold text-white" />
+                    <button type="submit" class="w-full py-3.5 ${radiusClass} text-sm font-black shadow-lg cursor-pointer mt-2" style="background: var(--accent); color: ${btnTextCol}">
                         שלח בקשה לשריון מקום בוואטסאפ &larr;
                     </button>
                 </form>
@@ -1705,9 +1461,7 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             const badge = document.getElementById('deliv-qty-' + idx);
             if (badge) badge.textContent = deliveryCart[idx];
             let sum = 0;
-            deliveryCart.forEach((qty, i) => {
-                sum += qty * deliveryCatalog[i].price;
-            });
+            deliveryCart.forEach((qty, i) => { sum += qty * deliveryCatalog[i].price; });
             document.getElementById('delivTotalPrice').textContent = sum + ' ₪';
         }
 
@@ -1722,30 +1476,22 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                     lines.push(\`• \${qty}x \${deliveryCatalog[i].name} (\${lineTotal} ₪)\`);
                 }
             });
-            if (lines.length === 0) {
-                alert('בחר לפחות פריט אחד למשלוח על ידי לחיצה על +');
-                return;
-            }
+            if (lines.length === 0) { alert('בחר לפחות פריט אחד למשלוח על ידי לחיצה על +'); return; }
             const name = document.getElementById('delivName').value.trim();
             const addr = document.getElementById('delivAddress').value.trim();
             const note = document.getElementById('delivNote').value.trim();
-
-            const msg = \`היי \${siteTitle}! הזמנת משלוח חדשה מהאתר:\\n\${lines.join('\\n')}\\n• סה״כ: \${sum} ₪\\n• שם: \${name}\\n• כתובת למשלוח: \${addr}\${note ? '\\n• הערות: ' + note : ''}\`;
+            const msg = \`היי \${siteTitle}! הזמנת משלוח חדשה מהאתר:\\n\${lines.join('\\n')}\\n• סה״כ: \${sum} ₪\\n• שם: \${name}\\n• כתובת: \${addr}\${note ? '\\n• הערות: ' + note : ''}\`;
             window.open(\`https://wa.me/\${targetWa}?text=\${encodeURIComponent(msg)}\`, '_blank');
         }
 
         function openTableModal() {
             const m = document.getElementById('tableModal');
-            m.classList.remove('hidden');
-            m.classList.add('flex');
+            m.classList.remove('hidden'); m.classList.add('flex');
         }
-
         function closeTableModal() {
             const m = document.getElementById('tableModal');
-            m.classList.add('hidden');
-            m.classList.remove('flex');
+            m.classList.add('hidden'); m.classList.remove('flex');
         }
-
         function submitTableBooking(e) {
             e.preventDefault();
             const name = document.getElementById('tblName').value.trim();
@@ -1753,8 +1499,7 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             const date = document.getElementById('tblDate').value.trim();
             const time = document.getElementById('tblTime').value.trim();
             const note = document.getElementById('tblNote').value.trim();
-
-            const msg = \`היי \${siteTitle}! אשמח לשריין מקום:\\n• שם: \${name}\\n• כמות/פרטים: \${guests}\\n• יום: \${date}\\n• שעה: \${time}\${note ? '\\n• הערות: ' + note : ''}\`;
+            const msg = \`היי \${siteTitle}! אשמח לשריין מקום:\\n• שם: \${name}\\n• פרטים: \${guests}\\n• יום: \${date}\\n• שעה: \${time}\${note ? '\\n• הערות: ' + note : ''}\`;
             window.open(\`https://wa.me/\${targetWa}?text=\${encodeURIComponent(msg)}\`, '_blank');
             closeTableModal();
         }
@@ -1766,13 +1511,13 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         function updateLiveIframe() {
             const iframe = document.getElementById('clientSiteIframe');
             iframe.srcdoc = compileStandaloneWebsite(builderState);
+            updateShortUrlPreview();
         }
 
         function setViewportMode(mode) {
             const bezel = document.getElementById('deviceFrameBezel');
             const island = document.getElementById('dynamicIslandPill');
             const chrome = document.getElementById('desktopChromeHeader');
-
             const headerMob = document.getElementById('btnViewMobile');
             const headerDesk = document.getElementById('btnViewDesktop');
             const stageMob = document.getElementById('stageBtnMobile');
@@ -1782,32 +1527,14 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                 bezel.className = 'iphone-17-pro-frame';
                 island.classList.remove('hidden');
                 chrome.classList.add('hidden');
-
-                [headerMob, stageMob].forEach(b => {
-                    if (!b) return;
-                    b.classList.add('bg-champagne', 'text-obsidian', 'font-black');
-                    b.classList.remove('bg-white/5', 'text-stone-300', 'font-extrabold');
-                });
-                [headerDesk, stageDesk].forEach(b => {
-                    if (!b) return;
-                    b.classList.remove('bg-champagne', 'text-obsidian', 'font-black');
-                    b.classList.add('text-stone-300', 'font-extrabold');
-                });
+                [headerMob, stageMob].forEach(b => { if (b) { b.classList.add('bg-champagne', 'text-obsidian', 'font-black'); b.classList.remove('bg-white/5', 'text-stone-300'); } });
+                [headerDesk, stageDesk].forEach(b => { if (b) { b.classList.remove('bg-champagne', 'text-obsidian', 'font-black'); b.classList.add('text-stone-300'); } });
             } else {
                 bezel.className = 'desktop-browser-frame';
                 island.classList.add('hidden');
                 chrome.classList.remove('hidden');
-
-                [headerDesk, stageDesk].forEach(b => {
-                    if (!b) return;
-                    b.classList.add('bg-champagne', 'text-obsidian', 'font-black');
-                    b.classList.remove('bg-white/5', 'text-stone-300', 'font-extrabold');
-                });
-                [headerMob, stageMob].forEach(b => {
-                    if (!b) return;
-                    b.classList.remove('bg-champagne', 'text-obsidian', 'font-black');
-                    b.classList.add('text-stone-300', 'font-extrabold');
-                });
+                [headerDesk, stageDesk].forEach(b => { if (b) { b.classList.add('bg-champagne', 'text-obsidian', 'font-black'); b.classList.remove('bg-white/5', 'text-stone-300'); } });
+                [headerMob, stageMob].forEach(b => { if (b) { b.classList.remove('bg-champagne', 'text-obsidian', 'font-black'); b.classList.add('text-stone-300'); } });
             }
         }
 
@@ -1819,32 +1546,16 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
             if (screen === 'edit') {
                 sidebar.classList.remove('hidden');
-                stage.classList.add('hidden');
-                stage.classList.remove('flex');
+                stage.classList.add('hidden'); stage.classList.remove('flex');
                 btnEdit.className = 'px-4 py-1.5 rounded-full text-xs font-black bg-champagne text-obsidian transition cursor-pointer';
                 btnPrev.className = 'px-4 py-1.5 rounded-full text-xs font-extrabold text-stone-400 hover:text-white transition cursor-pointer';
             } else {
                 sidebar.classList.add('hidden');
-                stage.classList.remove('hidden');
-                stage.classList.add('flex');
+                stage.classList.remove('hidden'); stage.classList.add('flex');
                 btnPrev.className = 'px-4 py-1.5 rounded-full text-xs font-black bg-champagne text-obsidian transition cursor-pointer';
                 btnEdit.className = 'px-4 py-1.5 rounded-full text-xs font-extrabold text-stone-400 hover:text-white transition cursor-pointer';
                 updateLiveIframe();
             }
-        }
-
-        function exportAndDownloadHTML() {
-            const code = compileStandaloneWebsite(builderState);
-            const blob = new Blob([code], { type: 'text/html;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'index.html';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            triggerToast('הקובץ index.html ירד למחשב!');
         }
 
         let toastTimeout = null;
@@ -1853,12 +1564,49 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             document.getElementById('toastText').textContent = message;
             banner.classList.remove('hidden');
             clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => {
-                banner.classList.add('hidden');
-            }, 3400);
+            toastTimeout = setTimeout(() => { banner.classList.add('hidden'); }, 3600);
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
+        // BOOT ROUTER: LOAD FROM SUPABASE IF ?s=slug IS IN URL
+        window.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const siteSlug = params.get('s');
+            const isEditMode = params.get('edit') === '1';
+
+            if (siteSlug && !isEditMode) {
+                document.getElementById('studioBuilderShell').classList.add('hidden');
+                const loader = document.getElementById('cloudLoaderScreen');
+                loader.classList.remove('hidden');
+                loader.classList.add('flex');
+
+                const cloudData = await fetchSiteFromSupabase(siteSlug);
+                loader.classList.add('hidden');
+                loader.classList.remove('flex');
+
+                if (cloudData) {
+                    const viewer = document.getElementById('standaloneLiveViewer');
+                    viewer.classList.remove('hidden');
+                    viewer.srcdoc = compileStandaloneWebsite(cloudData);
+                    document.title = cloudData.bizName || 'אתר העסק';
+                    return;
+                } else {
+                    document.getElementById('studioBuilderShell').classList.remove('hidden');
+                    triggerToast('הקישור לא נמצא בענן — נפתח מצב עריכה');
+                }
+            }
+
+            if (siteSlug && isEditMode) {
+                const cloudData = await fetchSiteFromSupabase(siteSlug);
+                if (cloudData) {
+                    builderState = Object.assign(JSON.parse(JSON.stringify(studioPresets.restaurant)), cloudData);
+                    syncInputsFromState();
+                    updateLiveIframe();
+                    activateControlTab('requests');
+                    triggerToast(`נטען לעריכה מהענן: ${siteSlug}`);
+                    return;
+                }
+            }
+
             loadPreset('restaurant');
             activateControlTab('requests');
         });
