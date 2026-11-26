@@ -224,7 +224,7 @@
     <!-- 2. MAIN SPLIT WORKSPACE -->
     <main class="flex-1 max-w-[1680px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-5 p-3 sm:p-6">
 
-        <!-- RIGHT SIDEBAR (4 CLEAN TABS - NO HOTSPOTS CLUTTER) -->
+        <!-- RIGHT SIDEBAR -->
         <aside id="controlSidebar" class="lg:col-span-5 flex flex-col gap-4 lg:max-h-[calc(100vh-92px)] lg:overflow-y-auto lg:pl-2 pb-16">
 
             <div class="glass-panel p-2 grid grid-cols-4 gap-1.5 sticky top-0 z-20">
@@ -238,7 +238,7 @@
                 </button>
                 <button type="button" onclick="activateControlTab('brand')" id="tab-btn-brand"
                         class="ctrl-tab py-2.5 px-2 rounded-xl text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer text-center">
-                    עיצוב מתקדם
+                    לוגו ועיצוב
                 </button>
                 <button type="button" onclick="activateControlTab('menu')" id="tab-btn-menu"
                         class="ctrl-tab py-2.5 px-2 rounded-xl text-stone-300 hover:text-white text-xs font-extrabold transition cursor-pointer text-center">
@@ -255,7 +255,7 @@
                     </div>
 
                     <p class="text-xs font-bold text-stone-300 leading-relaxed">
-                        תאר איך האתר של העסק שלך צריך להיראות — המנוע יבנה מיד טיוטה חיה בתצוגה משמאל:
+                        תאר איך האתר של העסק שלך צריך להיראות וצרף לוגו — המנוע יבנה מיד טיוטה חיה בתצוגה משמאל:
                     </p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -273,6 +273,18 @@
                                 <option value="aesthetic">קוסמטיקה / אסתטיקה / בוטיק</option>
                             </select>
                         </div>
+                    </div>
+
+                    <!-- Quick Logo Upload inside Client Request Tab -->
+                    <div>
+                        <label class="block text-xs font-black text-stone-300 mb-1.5">הלוגו של העסק (אופציונלי)</label>
+                        <label class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-white/5 border border-dashed border-champagne/40 text-xs font-black text-champagne flex items-center justify-center gap-2 cursor-pointer transition">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 4v11M8 8l4-4 4 4"/>
+                            </svg>
+                            <span id="reqLogoFileLabel">העלה תמונת לוגו מהטלפון / מחשב</span>
+                            <input type="file" accept="image/*" onchange="handleLogoFileUpload(event)" class="hidden" />
+                        </label>
                     </div>
 
                     <div>
@@ -403,8 +415,65 @@
                 </div>
             </div>
 
-            <!-- TAB 2: ADVANCED DESIGN STUDIO -->
+            <!-- TAB 2: LOGO & ADVANCED DESIGN STUDIO -->
             <div id="tab-panel-brand" class="ctrl-panel hidden space-y-4">
+                <!-- DEDICATED CLIENT LOGO STUDIO -->
+                <div class="glass-panel p-5 space-y-4 border-champagne/30">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-base font-black text-white">לוגו העסק (מותג אישי)</h2>
+                        <span class="px-2.5 py-1 rounded-full bg-champagne/15 text-champagne text-[11px] font-black">מופיע בראש ובתחתית האתר</span>
+                    </div>
+
+                    <div class="flex items-center gap-3.5">
+                        <!-- Logo Thumbnail Box -->
+                        <div id="logoPreviewThumb" class="w-16 h-16 rounded-2xl bg-obsidian border border-champagne/25 flex items-center justify-center overflow-hidden shrink-0">
+                            <span class="text-[11px] font-black text-stone-500 text-center px-1">ללא לוגו</span>
+                        </div>
+
+                        <div class="flex-1 space-y-2">
+                            <div class="flex items-center gap-2">
+                                <label class="flex-1 py-2.5 px-3.5 rounded-xl bg-champagne hover:bg-champagneHover text-obsidian text-xs font-black text-center cursor-pointer transition">
+                                    העלה קובץ לוגו
+                                    <input type="file" accept="image/*" onchange="handleLogoFileUpload(event)" class="hidden" />
+                                </label>
+                                <button type="button" onclick="clearClientLogo()"
+                                        class="py-2.5 px-3 rounded-xl bg-white/5 hover:bg-red-500/20 text-stone-300 hover:text-red-300 text-xs font-black cursor-pointer transition">
+                                    הסר
+                                </button>
+                            </div>
+                            <input type="url" id="fldLogoUrl" dir="ltr" placeholder="או הדבק קישור לתמונת הלוגו (https://...)" oninput="handleLogoUrlInput(this.value)"
+                                   class="studio-field w-full px-3 py-2 rounded-xl text-xs text-left" />
+                        </div>
+                    </div>
+
+                    <!-- Logo Size & Frame Shape -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-champagne/15">
+                        <div>
+                            <div class="flex justify-between text-xs font-black text-stone-300 mb-1.5">
+                                <span>גודל הלוגו</span>
+                                <span id="logoSizeLabel" class="text-champagne">38px</span>
+                            </div>
+                            <input type="range" id="fldLogoSize" min="26" max="64" value="38" oninput="updateLogoStyle()"
+                                   class="w-full accent-[#D4BEA2] cursor-pointer" />
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-black text-stone-300 mb-1.5">צורת מסגרת הלוגו</label>
+                            <select id="fldLogoShape" onchange="updateLogoStyle()" class="studio-field w-full px-3.5 py-2 rounded-xl text-xs">
+                                <option value="circle">עיגול מדויק (Circle)</option>
+                                <option value="rounded">ריבוע מעוגל (Rounded)</option>
+                                <option value="clean">חופשי / שקוף ללא מסגרת</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="flex items-center gap-2.5 text-xs font-bold text-stone-300 cursor-pointer pt-1">
+                        <input type="checkbox" id="fldShowNameNextToLogo" checked onchange="updateLogoStyle()" class="w-4 h-4 accent-[#D4BEA2] rounded cursor-pointer" />
+                        <span>הצג גם את שם העסק בטקסט ליד הלוגו</span>
+                    </label>
+                </div>
+
+                <!-- Visual Themes -->
                 <div class="glass-panel p-5 space-y-4">
                     <div class="flex items-center justify-between">
                         <h2 class="text-base font-black text-white">ערכת עיצוב ואווירה (Theme)</h2>
@@ -488,6 +557,7 @@
                     </div>
                 </div>
 
+                <!-- Texts & Background Photo -->
                 <div class="glass-panel p-5 space-y-4">
                     <h2 class="text-base font-black text-white">טקסטים וכותרות</h2>
 
@@ -705,6 +775,10 @@
             restaurant: {
                 slug: 'kairo-grill-tlv',
                 bizName: 'KAIRO | קאירו',
+                logoData: '',
+                logoSize: 38,
+                logoShape: 'circle',
+                showNameNextToLogo: true,
                 badge: 'מטבח אש פתוחה • יישון יבש • תל אביב',
                 heroLine1: 'אש, בשר מיושן.',
                 heroLine2: 'וחוויית לילה אחרת.',
@@ -737,6 +811,10 @@
             barber: {
                 slug: 'blade-and-gold-tlv',
                 bizName: 'BLADE & GOLD',
+                logoData: '',
+                logoSize: 38,
+                logoShape: 'rounded',
+                showNameNextToLogo: true,
                 badge: 'חוויית גרומינג פרטית • שדרות רוטשילד',
                 heroLine1: 'אומנות התספורת.',
                 heroLine2: 'בסטנדרט אחר.',
@@ -769,6 +847,10 @@
             fitness: {
                 slug: 'apex-studio-rg',
                 bizName: 'APEX STUDIO',
+                logoData: '',
+                logoSize: 38,
+                logoShape: 'circle',
+                showNameNextToLogo: true,
                 badge: 'אימונים אישיים 1 על 1 • מתחם הבורסה',
                 heroLine1: 'תוצאות אמיתיות.',
                 heroLine2: 'בלי תירוצים.',
@@ -801,6 +883,10 @@
             aesthetic: {
                 slug: 'aura-boutique-tlv',
                 bizName: 'AURA STUDIO',
+                logoData: '',
+                logoSize: 38,
+                logoShape: 'clean',
+                showNameNextToLogo: true,
                 badge: 'קליניקה לאסתטיקה וטיפוח מתקדם • תל אביב',
                 heroLine1: 'יופי מדויק.',
                 heroLine2: 'זוהר טבעי ועל-זמני.',
@@ -853,6 +939,58 @@
             return digits || STUDIO_OWNER_WA;
         }
 
+        // Logo File Upload & Base64 Embedding
+        function handleLogoFileUpload(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                builderState.logoData = e.target.result;
+                document.getElementById('fldLogoUrl').value = '';
+                const reqLabel = document.getElementById('reqLogoFileLabel');
+                if (reqLabel) reqLabel.textContent = 'לוגו צורף: ' + file.name;
+                syncLogoThumbPreview();
+                updateLiveIframe();
+                triggerToast('הלוגו הוטמע בהצלחה באתר!');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleLogoUrlInput(url) {
+            builderState.logoData = url.trim();
+            syncLogoThumbPreview();
+            queueIframeUpdate();
+        }
+
+        function clearClientLogo() {
+            builderState.logoData = '';
+            document.getElementById('fldLogoUrl').value = '';
+            const reqLabel = document.getElementById('reqLogoFileLabel');
+            if (reqLabel) reqLabel.textContent = 'העלה תמונת לוגו מהטלפון / מחשב';
+            syncLogoThumbPreview();
+            updateLiveIframe();
+            triggerToast('הלוגו הוסר');
+        }
+
+        function updateLogoStyle() {
+            builderState.logoSize = parseInt(document.getElementById('fldLogoSize').value, 10) || 38;
+            builderState.logoShape = document.getElementById('fldLogoShape').value;
+            builderState.showNameNextToLogo = document.getElementById('fldShowNameNextToLogo').checked;
+            document.getElementById('logoSizeLabel').textContent = builderState.logoSize + 'px';
+            queueIframeUpdate();
+        }
+
+        function syncLogoThumbPreview() {
+            const box = document.getElementById('logoPreviewThumb');
+            if (!box) return;
+            if (builderState.logoData) {
+                box.innerHTML = `<img src="${esc(builderState.logoData)}" alt="Logo" class="w-full h-full object-contain p-1" />`;
+            } else {
+                box.innerHTML = `<span class="text-[11px] font-black text-stone-500 text-center px-1">ללא לוגו</span>`;
+            }
+        }
+
         function activateControlTab(tabKey) {
             document.querySelectorAll('.ctrl-tab').forEach(btn => {
                 btn.classList.remove('bg-champagne', 'text-obsidian', 'font-black');
@@ -878,8 +1016,14 @@
             const customName = document.getElementById('reqBizName').value.trim();
             const niche = document.getElementById('reqNiche').value;
             const promptText = document.getElementById('reqPromptText').value.trim();
+            const preservedLogo = builderState.logoData;
 
             loadPreset(niche);
+
+            if (preservedLogo) {
+                builderState.logoData = preservedLogo;
+                syncLogoThumbPreview();
+            }
 
             if (customName) {
                 builderState.bizName = customName;
@@ -918,6 +1062,7 @@
 • שם: ${name}
 • טלפון: ${phone}
 • שם העסק: ${reqName}
+• לוגו צורף באתר: ${builderState.logoData ? 'כן' : 'טרם צורף'}
 ${insta ? '• אינסטגרם: ' + insta + '\n' : ''}• ערכת עיצוב: ${builderState.themeKey} (${builderState.accentColor})
 ${reqNotes ? '• בקשות לעיצוב האתר: ' + reqNotes : ''}`;
 
@@ -948,6 +1093,7 @@ ${reqNotes ? '• בקשות לעיצוב האתר: ' + reqNotes : ''}`;
 • שם: ${name}
 • יצירת קשר: ${contact}
 • שם העסק: ${reqName}
+• לוגו: ${builderState.logoData ? 'הוטמע באתר' : 'אשלח בהמשך'}
 • עיצוב: ${builderState.themeKey} / גופן ${builderState.fontFamily}
 ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
@@ -988,11 +1134,11 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                     const msg = `היי! דיברתי עם הבוט באתר STUDIO ENGINE ואני רוצה להזמין אתר עבור "${reqName}" (ערכת עיצוב: ${builderState.themeKey}).`;
                     window.open(`https://wa.me/${STUDIO_OWNER_WA}?text=${encodeURIComponent(msg)}`, '_blank');
                 } else if (q.includes('מחיר') || q.includes('עולה') || q.includes('כמה')) {
-                    appendBotBubble('המחיר הוא 150 ₪ חד-פעמי בלבד — כולל התאמה אישית של הצבעים, התמונות, התפריט וחיבור ישיר לוואטסאפ של העסק, בלי דמי מנוי חודשיים.', false);
+                    appendBotBubble('המחיר הוא 150 ₪ חד-פעמי בלבד — כולל הטמעת הלוגו שלך, התאמת צבעים, תמונות, תפריט וחיבור ישיר לוואטסאפ של העסק.', false);
                 } else if (q.includes('זמן') || q.includes('מוכן') || q.includes('מתי')) {
-                    appendBotBubble('האתר מוכן ועולה לאוויר תוך 24 שעות מרגע שליחת הפרטים בוואטסאפ.', false);
+                    appendBotBubble('האתר מוכן ועולה לאוויר תוך 24 שעות מרגע שליחת הפרטים והלוגו בוואטסאפ.', false);
                 } else {
-                    appendBotBubble('מעולה! אפשר לשחק עם הצבעים והגופנים בטאב "עיצוב מתקדם", או ללחוץ על "שגר לוואטסאפ" ונבנה לך את זה אישית.', false);
+                    appendBotBubble('מעולה! אפשר להעלות את הלוגו של העסק ולשחק עם הצבעים בטאב "לוגו ועיצוב", או ללחוץ על "שגר לוואטסאפ".', false);
                 }
             }, 350);
         }
@@ -1032,7 +1178,9 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         }
 
         function loadPreset(key) {
+            const currentLogo = builderState.logoData;
             builderState = JSON.parse(JSON.stringify(studioPresets[key]));
+            if (currentLogo) builderState.logoData = currentLogo;
 
             document.querySelectorAll('.preset-card').forEach(card => {
                 card.classList.remove('border-2', 'border-champagne', 'bg-champagne/15');
@@ -1049,6 +1197,10 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             document.getElementById('fldHeroLine1').value = builderState.heroLine1;
             document.getElementById('fldHeroLine2').value = builderState.heroLine2;
             document.getElementById('fldDescription').value = builderState.description;
+            document.getElementById('fldLogoSize').value = builderState.logoSize || 38;
+            document.getElementById('logoSizeLabel').textContent = (builderState.logoSize || 38) + 'px';
+            document.getElementById('fldLogoShape').value = builderState.logoShape || 'circle';
+            document.getElementById('fldShowNameNextToLogo').checked = builderState.showNameNextToLogo !== false;
             document.getElementById('fldAccentPicker').value = builderState.accentColor;
             document.getElementById('hexCodeBadge').textContent = builderState.accentColor.toUpperCase();
             document.getElementById('fldFontFamily').value = builderState.fontFamily || 'Heebo';
@@ -1064,6 +1216,7 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             document.getElementById('fldMenuHeading').value = builderState.menuHeading;
             document.getElementById('browserAddressSlug').textContent = `https://${builderState.slug}.github.io`;
 
+            syncLogoThumbPreview();
             renderCuratedNicheThumbnails();
             renderMenuRowsEditor();
             updateLiveIframe();
@@ -1156,7 +1309,7 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         }
 
         // =====================================================================
-        // SELF-CONTAINED CLIENT WEBSITE HTML COMPILER
+        // SELF-CONTAINED CLIENT WEBSITE HTML COMPILER (WITH CUSTOM LOGO)
         // =====================================================================
         function compileStandaloneWebsite(s) {
             const bizName = esc(s.bizName || 'שם העסק');
@@ -1185,6 +1338,25 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
             const bgImg = esc(s.bgImage || studioPresets.restaurant.bgImage);
             const waNumber = sanitizeWaPhone(s.whatsapp);
+
+            // Custom Client Logo Markup
+            const logoSrc = s.logoData ? esc(s.logoData) : '';
+            const logoH = Math.min(64, Math.max(26, parseInt(s.logoSize, 10) || 38));
+            const logoFrameClasses = s.logoShape === 'circle'
+                ? 'rounded-full object-cover border border-white/20 bg-black/40'
+                : (s.logoShape === 'rounded'
+                    ? 'rounded-xl object-cover border border-white/20 bg-black/40'
+                    : 'object-contain');
+
+            const headerBrandMarkup = logoSrc
+                ? `<img src="${logoSrc}" alt="${bizName}" style="height:${logoH}px; width:${s.logoShape === 'clean' ? 'auto' : logoH + 'px'};" class="${logoFrameClasses} shrink-0" />
+                   ${s.showNameNextToLogo !== false ? `<span class="text-base sm:text-xl font-black text-white truncate">${bizName}</span>` : ''}`
+                : `<span class="w-2.5 h-2.5 rounded-full shrink-0" style="background: var(--accent)"></span>
+                   <span class="text-base sm:text-xl font-black text-white truncate">${bizName}</span>`;
+
+            const footerLogoMarkup = logoSrc
+                ? `<img src="${logoSrc}" alt="${bizName}" style="height:${Math.round(logoH * 1.25)}px; width:${s.logoShape === 'clean' ? 'auto' : Math.round(logoH * 1.25) + 'px'};" class="${logoFrameClasses} mx-auto mb-2" />`
+                : '';
 
             const menuItemsHtml = (s.menuItems || []).map(item => {
                 if (s.menuLayout === 'editorial') {
@@ -1272,12 +1444,11 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 </head>
 <body class="pb-24 sm:pb-0">
 
-    <!-- Clean Floating Header (No redundant buttons) -->
+    <!-- Floating Header with Client Logo -->
     <header class="fixed top-0 inset-x-0 z-40 px-4 sm:px-8 pt-10 sm:pt-5">
-        <nav class="max-w-6xl mx-auto glass-luxury ${radiusClass} px-5 sm:px-7 py-3 flex items-center justify-between shadow-2xl">
-            <a href="#top" class="flex items-center gap-2.5 truncate">
-                <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background: var(--accent)"></span>
-                <span class="text-base sm:text-xl font-black text-white truncate">${bizName}</span>
+        <nav class="max-w-6xl mx-auto glass-luxury ${radiusClass} px-5 sm:px-7 py-2.5 flex items-center justify-between shadow-2xl">
+            <a href="#top" class="flex items-center gap-3 truncate">
+                ${headerBrandMarkup}
             </a>
 
             <button type="button" onclick="openBookingModal('')"
@@ -1346,8 +1517,9 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer with Client Logo -->
     <footer class="border-t ${isLight ? 'border-stone-300' : 'border-white/10'} py-10 px-4 text-center space-y-2">
+        ${footerLogoMarkup}
         <div class="text-lg font-black" style="color:${textCol}">${bizName}</div>
         <div class="text-xs font-bold" style="color:${mutedCol}">${address}</div>
         <div class="pt-2">
@@ -1387,7 +1559,7 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         </div>
     </div>
 
-    <!-- Clean Interactive Cards WhatsApp Booking Modal (No native select overlay!) -->
+    <!-- Clean Interactive Cards WhatsApp Booking Modal -->
     <div id="bookingModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center sm:p-4 bg-black/85 backdrop-blur-md">
         <div class="glass-luxury rounded-t-3xl sm:rounded-3xl max-w-md w-full p-6 pb-8 sm:p-7 shadow-2xl relative border border-white/15 max-h-[90dvh] overflow-y-auto">
             <div class="w-10 h-1.5 rounded-full bg-white/25 mx-auto mb-3 sm:hidden"></div>
