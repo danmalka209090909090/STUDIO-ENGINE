@@ -317,7 +317,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-black text-stone-300 mb-1.5">מספר וואטסאפ העסק (972...)</label>
-                                <input type="tel" id="fldWhatsapp" dir="ltr" placeholder="972501234567" oninput="handleFieldInput()"
+                                <input type="tel" id="fldWhatsapp" dir="ltr" placeholder="972534472426" oninput="handleFieldInput()"
                                        class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm text-left" />
                             </div>
                         </div>
@@ -543,10 +543,9 @@
     </div>
 
     <script>
-        // *** SUPABASE CLOUD CONFIGURATION ***
         const SUPABASE_URL = "https://ointvaxjfvvyzabklftp.supabase.co";
         const SUPABASE_ANON_KEY = "sb_publishable_X0SUT2S6kTDVxYNt0O5ERA_NZKmA7ZC";
-        const 0534472426 = "972501234567";
+        const STUDIO_OWNER_WA = "972534472426";
 
         const colorThemes = {
             'obsidian-gold':   { bg: '#090807', surface: '#141210', text: '#F7F4EF', muted: '#A8A29E', accent: '#D4BEA2', isLight: false },
@@ -570,7 +569,7 @@
                 accentColor: '#D4BEA2',
                 fontFamily: 'Heebo',
                 cornerStyle: 'pill',
-                whatsapp: '972501234567',
+                whatsapp: '972534472426',
                 primaryCta: 'הזמנת שולחן',
                 deliveryCta: 'הזמנת משלוח',
                 secondaryCta: 'תפריט המסעדה',
@@ -606,7 +605,7 @@
                 accentColor: '#D4BEA2',
                 fontFamily: 'Heebo',
                 cornerStyle: 'sharp',
-                whatsapp: '972528889900',
+                whatsapp: '972534472426',
                 primaryCta: 'קביעת תור',
                 deliveryCta: 'מוצרי טיפוח במשלוח',
                 secondaryCta: 'טיפולים ומחירון',
@@ -642,7 +641,7 @@
                 accentColor: '#4ADE80',
                 fontFamily: 'Rubik',
                 cornerStyle: 'rounded',
-                whatsapp: '972547776655',
+                whatsapp: '972534472426',
                 primaryCta: 'קביעת אימון',
                 deliveryCta: 'מארזי תזונה במשלוח',
                 secondaryCta: 'מסלולים ומחירון',
@@ -678,7 +677,7 @@
                 accentColor: '#B45309',
                 fontFamily: 'Frank Ruhl Libre',
                 cornerStyle: 'pill',
-                whatsapp: '972534443322',
+                whatsapp: '972534472426',
                 primaryCta: 'תיאום תור לטיפול',
                 deliveryCta: 'תכשירים במשלוח',
                 secondaryCta: 'תפריט טיפולים',
@@ -732,9 +731,6 @@
                 .replace(/^-|-$/g, '') || 'site';
         }
 
-        // =====================================================================
-        // SUPABASE CLOUD PERSISTENCE (SHORT LINKS ?s=slug)
-        // =====================================================================
         function getShortShareUrl() {
             const baseUrl = window.location.href.split('?')[0].split('#')[0];
             const slug = cleanSlug(document.getElementById('fldSiteSlug')?.value || builderState.slug);
@@ -743,7 +739,7 @@
 
         function updateShortUrlPreview() {
             const slugInput = document.getElementById('fldSiteSlug');
-            const slug = cleanSlug(slugInput.value);
+            const slug = cleanSlug(slugInput ? slugInput.value : builderState.slug);
             builderState.slug = slug;
             const shortUrl = getShortShareUrl();
             const outBox = document.getElementById('liveUrlOutputBox');
@@ -826,7 +822,6 @@
             return (rows && rows[0] && rows[0].data) ? rows[0].data : null;
         }
 
-        // Logo Upload
         function handleLogoFileUpload(event) {
             const file = event.target.files && event.target.files[0];
             if (!file) return;
@@ -1088,9 +1083,6 @@
             debounceTimer = setTimeout(updateLiveIframe, 160);
         }
 
-        // =====================================================================
-        // CLIENT WEBSITE HTML COMPILER (3 DIVERSE LAYOUTS + HOURS + WAZE)
-        // =====================================================================
         function compileStandaloneWebsite(s) {
             const bizName = esc(s.bizName || 'שם העסק');
             const badge = esc(s.badge || 'בוטיק נבחר');
@@ -1567,7 +1559,6 @@
             toastTimeout = setTimeout(() => { banner.classList.add('hidden'); }, 3600);
         }
 
-        // BOOT ROUTER: LOAD FROM SUPABASE IF ?s=slug IS IN URL
         window.addEventListener('DOMContentLoaded', async () => {
             const params = new URLSearchParams(window.location.search);
             const siteSlug = params.get('s');
