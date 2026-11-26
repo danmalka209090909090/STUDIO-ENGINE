@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STUDIO ENGINE // מחולל אתרים</title>
 
-    <!-- Google Fonts: Heebo 700, 800, 900 Black -->
+    <!-- Google Fonts: Heebo, Rubik, Frank Ruhl Libre -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@700;800;900&family=Rubik:wght@600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -167,7 +167,7 @@
                         STUDIO ENGINE <span class="text-champagne">// מחולל אתרים</span>
                     </h1>
                     <p class="text-[11px] font-bold text-stone-400 mt-1 hidden sm:block">
-                        הזינו בקשות, צפו באתר נבנה בזמן אמת ושלחו ישירות לוואטסאפ
+                        עיצוב מלא בהתאמה אישית, תצוגה חיה והעברה אוטומטית לוואטסאפ
                     </p>
                 </div>
             </div>
@@ -175,7 +175,7 @@
             <div class="flex lg:hidden items-center bg-obsidian p-1 rounded-full border border-champagne/20">
                 <button id="mobBtnEdit" onclick="setMobileScreen('edit')"
                         class="px-4 py-1.5 rounded-full text-xs font-black bg-champagne text-obsidian transition cursor-pointer">
-                    בנייה ופניות
+                    בנייה ועיצוב
                 </button>
                 <button id="mobBtnPreview" onclick="setMobileScreen('preview')"
                         class="px-4 py-1.5 rounded-full text-xs font-extrabold text-stone-400 hover:text-white transition cursor-pointer">
@@ -245,7 +245,7 @@
                 </button>
                 <button type="button" onclick="activateControlTab('brand')" id="tab-btn-brand"
                         class="ctrl-tab py-2.5 px-1.5 rounded-xl text-stone-300 hover:text-white text-[11px] sm:text-xs font-extrabold transition cursor-pointer text-center">
-                    עיצוב
+                    עיצוב מתקדם
                 </button>
                 <button type="button" onclick="activateControlTab('hotspots')" id="tab-btn-hotspots"
                         class="ctrl-tab py-2.5 px-1.5 rounded-xl text-stone-300 hover:text-white text-[11px] sm:text-xs font-extrabold transition cursor-pointer text-center">
@@ -289,22 +289,22 @@
                     <div>
                         <label class="block text-xs font-black text-stone-300 mb-1.5">מה חשוב שיופיע באתר? (בקשות מיוחדות)</label>
                         <textarea id="reqPromptText" rows="3"
-                                  placeholder="לדוגמה: עיצוב שחור-זהב יוקרתי, כפתור הזמנת משלוח מהירה לוואטסאפ, הדגשת מבצע 20% הנחה בהזמנה ראשונה וכתובת בתל אביב..."
+                                  placeholder="לדוגמה: עיצוב בהיר ונקי, כפתור הזמנת משלוח מהירה לוואטסאפ, הדגשת מבצע 20% הנחה בהזמנה ראשונה וכתובת בתל אביב..."
                                   class="studio-field w-full px-3.5 py-2.5 rounded-xl text-xs leading-relaxed"></textarea>
                     </div>
 
                     <div class="flex flex-wrap gap-2">
                         <button type="button" onclick="applyQuickRequestChip('יוקרתי שחור-זהב, הזמנות שולחן ומשלוחים מהירים')"
                                 class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-champagne/20 border border-champagne/20 text-[11px] font-bold text-champagne cursor-pointer transition">
-                            + אווירה יוקרתית
+                            + שחור-זהב יוקרתי
+                        </button>
+                        <button type="button" onclick="applyQuickRequestChip('עיצוב בהיר ונקי בגווני שמנת, מראה בוטיק אלגנטי')"
+                                class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-champagne/20 border border-champagne/20 text-[11px] font-bold text-champagne cursor-pointer transition">
+                            + בהיר ונקי (Light)
                         </button>
                         <button type="button" onclick="applyQuickRequestChip('מבצע היכרות 20% הנחה ללקוחות חדשים שמגיעים מהאתר')"
                                 class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-champagne/20 border border-champagne/20 text-[11px] font-bold text-champagne cursor-pointer transition">
                             + מבצע 20% הנחה
-                        </button>
-                        <button type="button" onclick="applyQuickRequestChip('סגנון מודרני ירוק-אנרגטי, מיקוד בתוצאות והרשמה מהירה')"
-                                class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-champagne/20 border border-champagne/20 text-[11px] font-bold text-champagne cursor-pointer transition">
-                            + סגנון מודרני חד
                         </button>
                     </div>
 
@@ -414,10 +414,97 @@
                 </div>
             </div>
 
-            <!-- TAB 2: BRAND IDENTITY & VISUALS -->
+            <!-- TAB 2: ADVANCED DESIGN STUDIO (THEMES, FONTS, SHAPES, OVERLAY, PHOTOGRAPHY) -->
             <div id="tab-panel-brand" class="ctrl-panel hidden space-y-4">
+                <!-- 1. Complete Visual Themes -->
                 <div class="glass-panel p-5 space-y-4">
-                    <h2 class="text-base font-black text-white">זהות המותג והכותרות</h2>
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-base font-black text-white">ערכת עיצוב ואווירה (Theme)</h2>
+                        <span id="hexCodeBadge" class="text-xs font-mono font-black text-champagne">#D4BEA2</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                        <button type="button" onclick="applyColorTheme('obsidian-gold')"
+                                class="p-3 rounded-2xl bg-[#090807] border border-champagne/40 hover:border-champagne text-right flex items-center gap-2.5 cursor-pointer transition">
+                            <span class="w-4 h-4 rounded-full shrink-0" style="background:#D4BEA2"></span>
+                            <span class="text-xs font-black text-white">שחור זהב</span>
+                        </button>
+
+                        <button type="button" onclick="applyColorTheme('ivory-light')"
+                                class="p-3 rounded-2xl bg-[#F8F5F0] border border-stone-300 hover:border-stone-900 text-right flex items-center gap-2.5 cursor-pointer transition">
+                            <span class="w-4 h-4 rounded-full shrink-0" style="background:#B45309"></span>
+                            <span class="text-xs font-black text-[#181512]">בהיר נקי</span>
+                        </button>
+
+                        <button type="button" onclick="applyColorTheme('midnight-cobalt')"
+                                class="p-3 rounded-2xl bg-[#070B14] border border-sky-400/40 hover:border-sky-400 text-right flex items-center gap-2.5 cursor-pointer transition">
+                            <span class="w-4 h-4 rounded-full shrink-0" style="background:#38BDF8"></span>
+                            <span class="text-xs font-black text-white">כחול לילה</span>
+                        </button>
+
+                        <button type="button" onclick="applyColorTheme('forest-emerald')"
+                                class="p-3 rounded-2xl bg-[#060E0A] border border-emerald-400/40 hover:border-emerald-400 text-right flex items-center gap-2.5 cursor-pointer transition">
+                            <span class="w-4 h-4 rounded-full shrink-0" style="background:#4ADE80"></span>
+                            <span class="text-xs font-black text-white">ירוק אמרלד</span>
+                        </button>
+
+                        <button type="button" onclick="applyColorTheme('velvet-crimson')"
+                                class="p-3 rounded-2xl bg-[#120709] border border-rose-400/40 hover:border-rose-400 text-right flex items-center gap-2.5 cursor-pointer transition">
+                            <span class="w-4 h-4 rounded-full shrink-0" style="background:#FB7185"></span>
+                            <span class="text-xs font-black text-white">בורדו קטיפה</span>
+                        </button>
+
+                        <label class="p-3 rounded-2xl bg-obsidian border border-dashed border-champagne/40 hover:border-champagne flex items-center justify-center gap-2 text-champagne text-xs font-black cursor-pointer transition">
+                            <span>+ צבע חופשי</span>
+                            <input type="color" id="fldAccentPicker" value="#D4BEA2" oninput="applyAccentColor(this.value)" class="opacity-0 absolute w-0 h-0" />
+                        </label>
+                    </div>
+
+                    <!-- Typography & Corner Radius -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-champagne/15">
+                        <div>
+                            <label class="block text-xs font-black text-stone-300 mb-1.5">סגנון גופן (פונט)</label>
+                            <select id="fldFontFamily" onchange="updateDesignStyle()" class="studio-field w-full px-3.5 py-2.5 rounded-xl text-xs">
+                                <option value="Heebo">Heebo — מודרני וחד</option>
+                                <option value="Rubik">Rubik — מעוגל וידידותי</option>
+                                <option value="Frank Ruhl Libre">Frank Ruhl — יוקרתי קלאסי</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-black text-stone-300 mb-1.5">צורת כפתורים וכרטיסים</label>
+                            <select id="fldCornerStyle" onchange="updateDesignStyle()" class="studio-field w-full px-3.5 py-2.5 rounded-xl text-xs">
+                                <option value="pill">עגול מלא (Pill Luxury)</option>
+                                <option value="rounded">פינות רכות (Modern Rounded)</option>
+                                <option value="sharp">קווים חדים (Architectural Sharp)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Overlay Darkness Slider & Menu Style -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-champagne/15">
+                        <div>
+                            <div class="flex justify-between text-xs font-black text-stone-300 mb-1.5">
+                                <span>החשכת רקע (קריאות)</span>
+                                <span id="overlayValLabel" class="text-champagne">70%</span>
+                            </div>
+                            <input type="range" id="fldOverlayOpacity" min="30" max="92" value="70" oninput="updateDesignStyle()"
+                                   class="w-full accent-[#D4BEA2] cursor-pointer" />
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-black text-stone-300 mb-1.5">פריסת מחירון / תפריט</label>
+                            <select id="fldMenuLayout" onchange="updateDesignStyle()" class="studio-field w-full px-3.5 py-2.5 rounded-xl text-xs">
+                                <option value="cards">כרטיסיות זכוכית (Cards)</option>
+                                <option value="editorial">רשימת שף נקייה (Minimal List)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Brand Texts -->
+                <div class="glass-panel p-5 space-y-4">
+                    <h2 class="text-base font-black text-white">טקסטים וכותרות</h2>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
@@ -434,7 +521,7 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-black text-stone-300 mb-1.5">כותרת ראשית — שורה 1 (לבן)</label>
+                            <label class="block text-xs font-black text-stone-300 mb-1.5">כותרת ראשית — שורה 1</label>
                             <input type="text" id="fldHeroLine1" oninput="handleFieldInput()"
                                    class="studio-field w-full px-3.5 py-2.5 rounded-xl text-sm" />
                         </div>
@@ -452,32 +539,13 @@
                     </div>
                 </div>
 
-                <div class="glass-panel p-5 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-base font-black text-white">צבע מותג ותמונת רקע</h2>
-                        <span id="hexCodeBadge" class="text-xs font-mono font-black text-champagne">#D4BEA2</span>
-                    </div>
+                <!-- 3. Curated Photography -->
+                <div class="glass-panel p-5 space-y-3">
+                    <label class="block text-xs font-black text-stone-300">תמונת רקע (קישור או בחירה מגלריית הנישה)</label>
+                    <input type="url" id="fldBgImage" dir="ltr" oninput="handleFieldInput()"
+                           class="studio-field w-full px-3.5 py-2 rounded-xl text-xs text-left" />
 
-                    <div class="flex items-center gap-3 flex-wrap">
-                        <button type="button" onclick="applyAccentColor('#D4BEA2')" class="w-9 h-9 rounded-full border-2 border-white/40 hover:scale-110 transition cursor-pointer" style="background:#D4BEA2" title="Champagne Gold #D4BEA2"></button>
-                        <button type="button" onclick="applyAccentColor('#E07A5F')" class="w-9 h-9 rounded-full border-2 border-white/20 hover:scale-110 transition cursor-pointer" style="background:#E07A5F" title="Ember Copper #E07A5F"></button>
-                        <button type="button" onclick="applyAccentColor('#4ADE80')" class="w-9 h-9 rounded-full border-2 border-white/20 hover:scale-110 transition cursor-pointer" style="background:#4ADE80" title="Emerald Luxe #4ADE80"></button>
-                        <button type="button" onclick="applyAccentColor('#F43F5E')" class="w-9 h-9 rounded-full border-2 border-white/20 hover:scale-110 transition cursor-pointer" style="background:#F43F5E" title="Crimson Velvet #F43F5E"></button>
-                        <button type="button" onclick="applyAccentColor('#E2E8F0')" class="w-9 h-9 rounded-full border-2 border-white/20 hover:scale-110 transition cursor-pointer" style="background:#E2E8F0" title="Arctic Silver #E2E8F0"></button>
-
-                        <label class="relative w-9 h-9 rounded-full border border-dashed border-champagne flex items-center justify-center text-champagne text-sm font-black cursor-pointer hover:bg-white/5" title="בחירת צבע חופשית">
-                            <span>+</span>
-                            <input type="color" id="fldAccentPicker" value="#D4BEA2" oninput="applyAccentColor(this.value)" class="opacity-0 absolute inset-0 w-full h-full cursor-pointer" />
-                        </label>
-                    </div>
-
-                    <div class="space-y-2.5 pt-2 border-t border-champagne/15">
-                        <label class="block text-xs font-black text-stone-300">קישור לתמונת רקע (או בחירה מהתמונות המומלצות)</label>
-                        <input type="url" id="fldBgImage" dir="ltr" oninput="handleFieldInput()"
-                               class="studio-field w-full px-3.5 py-2 rounded-xl text-xs text-left" />
-
-                        <div id="nicheThumbsContainer" class="grid grid-cols-4 gap-2.5 pt-1"></div>
-                    </div>
+                    <div id="nicheThumbsContainer" class="grid grid-cols-4 gap-2.5 pt-1"></div>
                 </div>
             </div>
 
@@ -660,6 +728,14 @@
         // *** החלף כאן למספר הוואטסאפ האמיתי שלך (בפורמט 9725...) ***
         const STUDIO_OWNER_WA = "972501234567";
 
+        const colorThemes = {
+            'obsidian-gold': { bg: '#090807', surface: '#141210', text: '#F7F4EF', muted: '#A8A29E', accent: '#D4BEA2', isLight: false },
+            'ivory-light':   { bg: '#F8F5F0', surface: '#FFFFFF', text: '#181512', muted: '#57534E', accent: '#B45309', isLight: true },
+            'midnight-cobalt': { bg: '#070B14', surface: '#0F172A', text: '#F8FAFC', muted: '#94A3B8', accent: '#38BDF8', isLight: false },
+            'forest-emerald': { bg: '#060E0A', surface: '#0D1C14', text: '#F0FDF4', muted: '#86EFAC', accent: '#4ADE80', isLight: false },
+            'velvet-crimson': { bg: '#120709', surface: '#1F0D11', text: '#FFF1F2', muted: '#FDA4AF', accent: '#FB7185', isLight: false }
+        };
+
         const studioPresets = {
             restaurant: {
                 slug: 'kairo-grill-tlv',
@@ -668,7 +744,12 @@
                 heroLine1: 'אש, בשר מיושן.',
                 heroLine2: 'וחוויית לילה אחרת.',
                 description: 'נתחים מובחרים ביישון יבש של 45 יום על גחלי אלון, קוקטיילים בעישון חי וחלל אירוח אינטימי שמרגיש כמו סלון פרטי בלב העיר.',
+                themeKey: 'obsidian-gold',
                 accentColor: '#D4BEA2',
+                fontFamily: 'Heebo',
+                cornerStyle: 'pill',
+                overlayOpacity: 70,
+                menuLayout: 'cards',
                 whatsapp: '972501234567',
                 primaryCta: 'שריין שולחן / הזמן עכשיו',
                 secondaryCta: 'תפריט ומחירון',
@@ -700,7 +781,12 @@
                 heroLine1: 'אומנות התספורת.',
                 heroLine2: 'בסטנדרט אחר.',
                 description: 'מעבר לתספורת מדויקת — טקס של שקט, מגבות חמות, תער מסורתי וטיפוח אישי באווירה אינטימית ומוקפדת.',
+                themeKey: 'obsidian-gold',
                 accentColor: '#D4BEA2',
+                fontFamily: 'Heebo',
+                cornerStyle: 'sharp',
+                overlayOpacity: 75,
+                menuLayout: 'cards',
                 whatsapp: '972528889900',
                 primaryCta: 'שריין תור עכשיו',
                 secondaryCta: 'טיפולים ומחירון',
@@ -732,7 +818,12 @@
                 heroLine1: 'תוצאות אמיתיות.',
                 heroLine2: 'בלי תירוצים.',
                 description: 'אימונים אישיים 1 על 1 בסטודיו פרטי, בניית תוכנית תזונה מותאמת למטרה וליווי צמוד עד שתגיע לגרסה הכי חזקה שלך.',
+                themeKey: 'forest-emerald',
                 accentColor: '#4ADE80',
+                fontFamily: 'Rubik',
+                cornerStyle: 'rounded',
+                overlayOpacity: 72,
+                menuLayout: 'cards',
                 whatsapp: '972547776655',
                 primaryCta: 'קבע אימון היכרות',
                 secondaryCta: 'מסלולים ומחירון',
@@ -764,7 +855,12 @@
                 heroLine1: 'יופי מדויק.',
                 heroLine2: 'זוהר טבעי ועל-זמני.',
                 description: 'טיפולי פנים מתקדמים, עיצוב וטיפוח ברמת פרימיום בחלל שקט ופרטי המעניק לך חוויית רוגע ותוצאות נראות לעין מהטיפול הראשון.',
-                accentColor: '#E07A5F',
+                themeKey: 'ivory-light',
+                accentColor: '#B45309',
+                fontFamily: 'Frank Ruhl Libre',
+                cornerStyle: 'pill',
+                overlayOpacity: 58,
+                menuLayout: 'editorial',
                 whatsapp: '972534443322',
                 primaryCta: 'תיאום תור לטיפול',
                 secondaryCta: 'טיפולים ומחירון',
@@ -850,9 +946,11 @@
                 builderState.description = promptText;
                 document.getElementById('fldDescription').value = promptText;
 
-                if (promptText.includes('ירוק')) applyAccentColor('#4ADE80');
-                else if (promptText.includes('אדום') || promptText.includes('בורדו')) applyAccentColor('#F43F5E');
-                else if (promptText.includes('זהב') || promptText.includes('יוקר')) applyAccentColor('#D4BEA2');
+                if (promptText.includes('בהיר') || promptText.includes('שמנת') || promptText.includes('לבן')) applyColorTheme('ivory-light');
+                else if (promptText.includes('כחול')) applyColorTheme('midnight-cobalt');
+                else if (promptText.includes('ירוק')) applyColorTheme('forest-emerald');
+                else if (promptText.includes('בורדו') || promptText.includes('אדום')) applyColorTheme('velvet-crimson');
+                else if (promptText.includes('זהב') || promptText.includes('יוקר')) applyColorTheme('obsidian-gold');
 
                 if (promptText.includes('הנחה') || promptText.includes('מבצע')) {
                     builderState.hotspots[0].title = 'הטבת היכרות בלעדית';
@@ -882,7 +980,7 @@
 • שם: ${name}
 • טלפון: ${phone}
 • שם העסק: ${reqName}
-${insta ? '• אינסטגרם: ' + insta + '\n' : ''}• צבע מותג שנבחר: ${builderState.accentColor}
+${insta ? '• אינסטגרם: ' + insta + '\n' : ''}• ערכת עיצוב: ${builderState.themeKey} (${builderState.accentColor})
 ${reqNotes ? '• בקשות לעיצוב האתר: ' + reqNotes : ''}`;
 
             window.open(`https://wa.me/${STUDIO_OWNER_WA}?text=${encodeURIComponent(msg)}`, '_blank');
@@ -912,7 +1010,7 @@ ${reqNotes ? '• בקשות לעיצוב האתר: ' + reqNotes : ''}`;
 • שם: ${name}
 • יצירת קשר: ${contact}
 • שם העסק: ${reqName}
-• צבע ראשי: ${builderState.accentColor}
+• עיצוב: ${builderState.themeKey} / גופן ${builderState.fontFamily}
 ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
             window.open(`https://wa.me/${STUDIO_OWNER_WA}?text=${encodeURIComponent(msg)}`, '_blank');
@@ -949,14 +1047,14 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                 if (q.includes('וואטסאפ') || q.includes('שגר') || q.includes('להזמין')) {
                     appendBotBubble('מעביר אותך עכשיו לוואטסאפ עם כל הפרטים של האתר שבנית! 🚀', false);
                     const reqName = document.getElementById('reqBizName').value.trim() || builderState.bizName;
-                    const msg = `היי! דיברתי עם הבוט באתר STUDIO ENGINE ואני רוצה להזמין אתר עבור "${reqName}" (צבע: ${builderState.accentColor}).`;
+                    const msg = `היי! דיברתי עם הבוט באתר STUDIO ENGINE ואני רוצה להזמין אתר עבור "${reqName}" (ערכת עיצוב: ${builderState.themeKey}).`;
                     window.open(`https://wa.me/${STUDIO_OWNER_WA}?text=${encodeURIComponent(msg)}`, '_blank');
                 } else if (q.includes('מחיר') || q.includes('עולה') || q.includes('כמה')) {
                     appendBotBubble('המחיר הוא 150 ₪ חד-פעמי בלבד — כולל התאמה אישית של הצבעים, התמונות, התפריט וחיבור ישיר לוואטסאפ של העסק, בלי דמי מנוי חודשיים.', false);
                 } else if (q.includes('זמן') || q.includes('מוכן') || q.includes('מתי')) {
                     appendBotBubble('האתר מוכן ועולה לאוויר תוך 24 שעות מרגע שליחת הפרטים בוואטסאפ.', false);
                 } else {
-                    appendBotBubble('מעולה! אפשר למלא את שם העסק והבקשות בטאב "בקשות אתר" ולראות הכל נבנה חי, או ללחוץ על "שגר לוואטסאפ" ונבנה לך את זה אישית.', false);
+                    appendBotBubble('מעולה! אפשר לשחק עם הצבעים והגופנים בטאב "עיצוב מתקדם", או ללחוץ על "שגר לוואטסאפ" ונבנה לך את זה אישית.', false);
                 }
             }, 350);
         }
@@ -968,6 +1066,32 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             if (!val) return;
             input.value = '';
             askStudioBot(val);
+        }
+
+        // Advanced Design Controls
+        function applyColorTheme(themeKey) {
+            const theme = colorThemes[themeKey] || colorThemes['obsidian-gold'];
+            builderState.themeKey = themeKey;
+            builderState.accentColor = theme.accent;
+            document.getElementById('fldAccentPicker').value = theme.accent;
+            document.getElementById('hexCodeBadge').textContent = theme.accent.toUpperCase();
+            queueIframeUpdate();
+        }
+
+        function applyAccentColor(hex) {
+            builderState.accentColor = hex;
+            document.getElementById('fldAccentPicker').value = hex;
+            document.getElementById('hexCodeBadge').textContent = hex.toUpperCase();
+            queueIframeUpdate();
+        }
+
+        function updateDesignStyle() {
+            builderState.fontFamily = document.getElementById('fldFontFamily').value;
+            builderState.cornerStyle = document.getElementById('fldCornerStyle').value;
+            builderState.overlayOpacity = parseInt(document.getElementById('fldOverlayOpacity').value, 10);
+            builderState.menuLayout = document.getElementById('fldMenuLayout').value;
+            document.getElementById('overlayValLabel').textContent = builderState.overlayOpacity + '%';
+            queueIframeUpdate();
         }
 
         function loadPreset(key) {
@@ -990,6 +1114,11 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             document.getElementById('fldDescription').value = builderState.description;
             document.getElementById('fldAccentPicker').value = builderState.accentColor;
             document.getElementById('hexCodeBadge').textContent = builderState.accentColor.toUpperCase();
+            document.getElementById('fldFontFamily').value = builderState.fontFamily || 'Heebo';
+            document.getElementById('fldCornerStyle').value = builderState.cornerStyle || 'pill';
+            document.getElementById('fldOverlayOpacity').value = builderState.overlayOpacity || 70;
+            document.getElementById('overlayValLabel').textContent = (builderState.overlayOpacity || 70) + '%';
+            document.getElementById('fldMenuLayout').value = builderState.menuLayout || 'cards';
             document.getElementById('fldBgImage').value = builderState.bgImage;
             document.getElementById('fldWhatsapp').value = builderState.whatsapp;
             document.getElementById('fldPrimaryCta').value = builderState.primaryCta;
@@ -1018,13 +1147,6 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             builderState.bgImage = url;
             document.getElementById('fldBgImage').value = url;
             renderCuratedNicheThumbnails();
-            queueIframeUpdate();
-        }
-
-        function applyAccentColor(hex) {
-            builderState.accentColor = hex;
-            document.getElementById('fldAccentPicker').value = hex;
-            document.getElementById('hexCodeBadge').textContent = hex.toUpperCase();
             queueIframeUpdate();
         }
 
@@ -1125,7 +1247,7 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         }
 
         // =====================================================================
-        // SELF-CONTAINED CLIENT WEBSITE HTML COMPILER (CLEAN AESTHETIC PILLS)
+        // SELF-CONTAINED CLIENT WEBSITE HTML COMPILER
         // =====================================================================
         function compileStandaloneWebsite(s) {
             const bizName = esc(s.bizName || 'שם העסק');
@@ -1137,7 +1259,21 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             const secondaryCta = esc(s.secondaryCta || 'תפריט ומחירון');
             const address = esc(s.address || 'תל אביב');
             const menuHeading = esc(s.menuHeading || 'תפריט ומחירון');
-            const accent = /^#[0-9A-Fa-f]{6}$/.test(s.accentColor) ? s.accentColor : '#D4BEA2';
+
+            const theme = colorThemes[s.themeKey] || colorThemes['obsidian-gold'];
+            const accent = /^#[0-9A-Fa-f]{6}$/.test(s.accentColor) ? s.accentColor : theme.accent;
+            const bgCol = theme.bg;
+            const surfaceCol = theme.surface;
+            const textCol = theme.text;
+            const mutedCol = theme.muted;
+            const isLight = theme.isLight;
+            const btnTextCol = isLight ? '#FFFFFF' : '#090807';
+
+            const fontName = ['Heebo', 'Rubik', 'Frank Ruhl Libre'].includes(s.fontFamily) ? s.fontFamily : 'Heebo';
+            const radiusClass = s.cornerStyle === 'sharp' ? 'rounded-none' : (s.cornerStyle === 'rounded' ? 'rounded-2xl' : 'rounded-full');
+            const cardRadiusClass = s.cornerStyle === 'sharp' ? 'rounded-none' : 'rounded-2xl';
+            const overlayAlpha = Math.min(0.95, Math.max(0.3, (s.overlayOpacity || 70) / 100));
+
             const bgImg = esc(s.bgImage || studioPresets.restaurant.bgImage);
             const waNumber = sanitizeWaPhone(s.whatsapp);
 
@@ -1147,21 +1283,38 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                 desc: h.desc || ''
             }));
 
-            const menuCardsMarkup = (s.menuItems || []).map(item => `
-                <div class="p-5 rounded-2xl bg-[#141210] border border-white/10 hover:border-[var(--accent)]/50 transition flex flex-col justify-between gap-3">
+            const menuItemsHtml = (s.menuItems || []).map(item => {
+                if (s.menuLayout === 'editorial') {
+                    return `
+                    <div class="py-4 border-b ${isLight ? 'border-stone-200' : 'border-white/10'} flex items-center justify-between gap-4">
+                        <div class="space-y-1">
+                            <h4 class="text-base sm:text-lg font-black" style="color:${textCol}">${esc(item.name)}</h4>
+                            <p class="text-xs font-bold leading-relaxed" style="color:${mutedCol}">${esc(item.desc)}</p>
+                        </div>
+                        <div class="text-left shrink-0 space-y-1">
+                            <div class="text-base font-black" style="color: var(--accent)">${esc(item.price)}</div>
+                            <button type="button" onclick="openBookingModal('${esc(item.name)} (${esc(item.price)})')"
+                                    class="text-[11px] font-black underline cursor-pointer" style="color: var(--accent)">
+                                הזמן &larr;
+                            </button>
+                        </div>
+                    </div>`;
+                }
+                return `
+                <div class="p-5 ${cardRadiusClass} border ${isLight ? 'border-stone-200 shadow-sm' : 'border-white/10'} transition flex flex-col justify-between gap-3" style="background:${surfaceCol}">
                     <div class="space-y-1">
                         <div class="flex items-baseline justify-between gap-2">
-                            <h4 class="text-base sm:text-lg font-black text-white">${esc(item.name)}</h4>
+                            <h4 class="text-base sm:text-lg font-black" style="color:${textCol}">${esc(item.name)}</h4>
                             <span class="text-base font-black shrink-0" style="color: var(--accent)">${esc(item.price)}</span>
                         </div>
-                        <p class="text-xs font-bold text-stone-400 leading-relaxed">${esc(item.desc)}</p>
+                        <p class="text-xs font-bold leading-relaxed" style="color:${mutedCol}">${esc(item.desc)}</p>
                     </div>
                     <button type="button" onclick="openBookingModal('${esc(item.name)} (${esc(item.price)})')"
                             class="self-start text-xs font-black hover:underline cursor-pointer" style="color: var(--accent)">
                         בחירה והזמנה בוואטסאפ &larr;
                     </button>
-                </div>
-            `).join('');
+                </div>`;
+            }).join('');
 
             const selectOptionsMarkup = (s.menuItems || []).map(item =>
                 `<option value="${esc(item.name)} (${esc(item.price)})">${esc(item.name)} — ${esc(item.price)}</option>`
@@ -1175,21 +1328,21 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
     <title>${bizName}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@700;800;900&family=Rubik:wght@600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"><\/script>
     <style>
         :root {
-            --bg-obsidian: #090807;
+            --bg-main: ${bgCol};
             --accent: ${accent};
         }
         * {
-            font-family: 'Heebo', sans-serif !important;
+            font-family: '${fontName}', sans-serif !important;
             letter-spacing: -0.02em;
             -webkit-tap-highlight-color: transparent;
         }
         html, body {
-            background-color: var(--bg-obsidian);
-            color: #F7F4EF;
+            background-color: var(--bg-main);
+            color: ${textCol};
             font-weight: 800;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -1242,7 +1395,7 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
     <!-- Floating Header -->
     <header id="siteHeader" class="fixed top-0 inset-x-0 z-40 px-3 sm:px-8 pt-3 sm:pt-5 reveal-node">
-        <nav class="max-w-6xl mx-auto glass-luxury rounded-full px-4 sm:px-7 py-3 flex items-center justify-between shadow-2xl">
+        <nav class="max-w-6xl mx-auto glass-luxury ${radiusClass} px-4 sm:px-7 py-3 flex items-center justify-between shadow-2xl">
             <a href="#top" class="flex items-center gap-2.5">
                 <span class="w-2.5 h-2.5 rounded-full" style="background: var(--accent)"></span>
                 <span class="text-base sm:text-xl font-black text-white">${bizName}</span>
@@ -1250,12 +1403,12 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
             <div class="flex items-center gap-2">
                 <button type="button" onclick="replaySceneGlide()"
-                        class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-[11px] font-black text-stone-300 border border-white/10 cursor-pointer">
+                        class="px-3 py-1.5 ${radiusClass} bg-white/5 hover:bg-white/10 text-[11px] font-black text-stone-300 border border-white/10 cursor-pointer">
                     כניסה חיה &#8635;
                 </button>
                 <button type="button" onclick="openBookingModal('')"
-                        class="hidden sm:inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-xs font-black text-[#090807] cursor-pointer"
-                        style="background: var(--accent)">
+                        class="hidden sm:inline-flex items-center gap-1.5 px-5 py-2 ${radiusClass} text-xs font-black cursor-pointer"
+                        style="background: var(--accent); color: ${btnTextCol}">
                     <span>${primaryCta}</span>
                     <span>&larr;</span>
                 </button>
@@ -1270,8 +1423,8 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                  onerror="this.src='https://placehold.co/1600x1000/12100E/D4BEA2?text=${encodeURIComponent(bizName)}'"
                  alt="${bizName}"
                  class="w-full h-full object-cover object-center glide-active" />
-            <div class="absolute inset-0 bg-gradient-to-l from-[#090807]/95 via-[#090807]/70 to-[#090807]/30"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#090807] via-[#090807]/25 to-[#090807]/75"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to left, rgba(9,8,7,${overlayAlpha + 0.15}) 0%, rgba(9,8,7,${overlayAlpha}) 55%, rgba(9,8,7,${Math.max(0.25, overlayAlpha - 0.3)}) 100%)"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to top, ${bgCol} 0%, transparent 50%, rgba(9,8,7,0.7) 100%)"></div>
         </div>
 
         <!-- Bottom-Sheet Special Card -->
@@ -1284,8 +1437,8 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             <h3 id="sheetTitle" class="text-xl font-black text-white mb-1"></h3>
             <p id="sheetDesc" class="text-xs font-bold text-stone-300 leading-relaxed mb-4"></p>
             <button id="sheetBookBtn" type="button"
-                    class="w-full py-3 rounded-full text-xs font-black text-[#090807] cursor-pointer"
-                    style="background: var(--accent)">
+                    class="w-full py-3 ${radiusClass} text-xs font-black cursor-pointer"
+                    style="background: var(--accent); color: ${btnTextCol}">
                 הזמן עכשיו בוואטסאפ &larr;
             </button>
         </div>
@@ -1293,7 +1446,7 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
         <!-- Clean Unobstructed Hero Headlines -->
         <div id="heroTextBlock" class="relative z-10 max-w-6xl mx-auto w-full my-auto pt-4 reveal-node">
             <div class="max-w-xl space-y-4">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-luxury text-[11px] font-black" style="color: var(--accent)">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 ${radiusClass} glass-luxury text-[11px] font-black" style="color: var(--accent)">
                     <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent)"></span>
                     <span>${badge}</span>
                 </div>
@@ -1309,12 +1462,12 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
                     <button type="button" onclick="openBookingModal('')"
-                            class="py-3.5 px-7 rounded-full text-sm font-black text-[#090807] shadow-xl cursor-pointer text-center"
-                            style="background: var(--accent)">
+                            class="py-3.5 px-7 ${radiusClass} text-sm font-black shadow-xl cursor-pointer text-center"
+                            style="background: var(--accent); color: ${btnTextCol}">
                         ${primaryCta} &larr;
                     </button>
                     <button type="button" onclick="openMenuModal()"
-                            class="py-3.5 px-6 rounded-full glass-luxury text-white text-sm font-black text-center hover:bg-white/10 transition cursor-pointer">
+                            class="py-3.5 px-6 ${radiusClass} glass-luxury text-white text-sm font-black text-center hover:bg-white/10 transition cursor-pointer">
                         ${secondaryCta}
                     </button>
                 </div>
@@ -1323,30 +1476,30 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
         <!-- Aesthetic Sleek Bottom Special Pills Strip -->
         <div id="spotsLayer" class="relative z-20 max-w-6xl mx-auto w-full pt-4 reveal-node">
-            <div class="text-[11px] font-bold text-stone-400 mb-2">המלצות נבחרות:</div>
+            <div class="text-[11px] font-bold mb-2" style="color:${mutedCol}">המלצות נבחרות:</div>
             <div id="specialPillsRow" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1"></div>
         </div>
     </section>
 
     <!-- Inline Menu / Price List Section -->
     <section id="inlineMenu" class="max-w-5xl mx-auto px-4 sm:px-8 py-14 sm:py-20 space-y-6">
-        <div class="flex items-end justify-between border-b border-white/10 pb-4">
+        <div class="flex items-end justify-between border-b ${isLight ? 'border-stone-300' : 'border-white/10'} pb-4">
             <div>
                 <span class="text-xs font-black block mb-1" style="color: var(--accent)">מעודכן להיום</span>
-                <h2 class="text-2xl sm:text-4xl font-black text-white">${menuHeading}</h2>
+                <h2 class="text-2xl sm:text-4xl font-black" style="color:${textCol}">${menuHeading}</h2>
             </div>
-            <span class="text-xs font-extrabold text-stone-400">${address}</span>
+            <span class="text-xs font-extrabold" style="color:${mutedCol}">${address}</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            ${menuCardsMarkup}
+        <div class="${s.menuLayout === 'editorial' ? 'divide-y divide-white/5' : 'grid grid-cols-1 md:grid-cols-2 gap-4'}">
+            ${menuItemsHtml}
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-white/10 py-10 px-4 text-center space-y-2">
-        <div class="text-lg font-black text-white">${bizName}</div>
-        <div class="text-xs font-bold text-stone-400">${address}</div>
+    <footer class="border-t ${isLight ? 'border-stone-300' : 'border-white/10'} py-10 px-4 text-center space-y-2">
+        <div class="text-lg font-black" style="color:${textCol}">${bizName}</div>
+        <div class="text-xs font-bold" style="color:${mutedCol}">${address}</div>
         <div class="pt-2">
             <button type="button" onclick="openBookingModal('')" class="text-xs font-black underline cursor-pointer" style="color: var(--accent)">
                 שליחת הודעה ישירה בוואטסאפ &larr;
@@ -1358,12 +1511,12 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
     <div class="fixed bottom-0 inset-x-0 z-40 sm:hidden glass-luxury border-t border-white/15 px-4 py-3">
         <div class="grid grid-cols-2 gap-2.5">
             <button type="button" onclick="openBookingModal('')"
-                    class="py-3.5 px-4 rounded-full text-xs font-black text-[#090807] shadow-lg cursor-pointer"
-                    style="background: var(--accent)">
+                    class="py-3.5 px-4 ${radiusClass} text-xs font-black shadow-lg cursor-pointer"
+                    style="background: var(--accent); color: ${btnTextCol}">
                 ${primaryCta} &larr;
             </button>
             <button type="button" onclick="openMenuModal()"
-                    class="py-3.5 px-4 rounded-full bg-white/10 border border-white/15 text-white text-xs font-black flex items-center justify-center cursor-pointer">
+                    class="py-3.5 px-4 ${radiusClass} bg-white/10 border border-white/15 text-white text-xs font-black flex items-center justify-center cursor-pointer">
                 ${secondaryCta}
             </button>
         </div>
@@ -1371,15 +1524,15 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
     <!-- Full Menu / Services Modal -->
     <div id="menuModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center sm:p-4 bg-black/85 backdrop-blur-md">
-        <div class="glass-luxury rounded-t-3xl sm:rounded-3xl max-w-2xl w-full p-6 pb-8 sm:p-8 shadow-2xl relative border border-white/15 max-h-[88dvh] overflow-y-auto">
-            <div class="w-10 h-1.5 rounded-full bg-white/25 mx-auto mb-3 sm:hidden"></div>
-            <button type="button" onclick="closeMenuModal()" class="absolute top-5 left-5 w-9 h-9 rounded-full bg-white/10 text-white font-black flex items-center justify-center cursor-pointer">✕</button>
+        <div class="rounded-t-3xl sm:rounded-3xl max-w-2xl w-full p-6 pb-8 sm:p-8 shadow-2xl relative border ${isLight ? 'border-stone-200' : 'border-white/15'} max-h-[88dvh] overflow-y-auto" style="background:${bgCol}">
+            <div class="w-10 h-1.5 rounded-full bg-stone-500/40 mx-auto mb-3 sm:hidden"></div>
+            <button type="button" onclick="closeMenuModal()" class="absolute top-5 left-5 w-9 h-9 rounded-full bg-stone-500/20 font-black flex items-center justify-center cursor-pointer" style="color:${textCol}">✕</button>
             <div class="mb-5">
                 <span class="text-xs font-black" style="color: var(--accent)">${bizName}</span>
-                <h3 class="text-2xl sm:text-3xl font-black text-white">${menuHeading}</h3>
+                <h3 class="text-2xl sm:text-3xl font-black" style="color:${textCol}">${menuHeading}</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                ${menuCardsMarkup}
+                ${menuItemsHtml}
             </div>
         </div>
     </div>
@@ -1414,8 +1567,8 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
                         </div>
                     </div>
                     <button type="submit"
-                            class="w-full py-3.5 rounded-full text-sm font-black text-[#090807] shadow-lg cursor-pointer mt-2"
-                            style="background: var(--accent)">
+                            class="w-full py-3.5 ${radiusClass} text-sm font-black shadow-lg cursor-pointer mt-2"
+                            style="background: var(--accent); color: ${btnTextCol}">
                         שלח אישור לוואטסאפ &larr;
                     </button>
                 </form>
@@ -1461,7 +1614,7 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
             spotsData.forEach(s => {
                 const pill = document.createElement('button');
                 pill.type = 'button';
-                pill.className = 'shrink-0 inline-flex items-center gap-2 px-3.5 py-2 rounded-full glass-luxury hover:bg-white/10 border border-white/15 text-xs font-black text-white cursor-pointer transition shadow-lg';
+                pill.className = 'shrink-0 inline-flex items-center gap-2 px-3.5 py-2 ${radiusClass} glass-luxury hover:bg-white/10 border border-white/15 text-xs font-black text-white cursor-pointer transition shadow-lg';
                 pill.innerHTML = \`<span class="w-2 h-2 rounded-full" style="background: var(--accent)"></span><span>\${s.title}</span>\`;
                 pill.onclick = () => {
                     document.getElementById('sheetTag').textContent = s.tag;
@@ -1633,7 +1786,7 @@ ${reqNotes ? '• בקשות מיוחדות: ' + reqNotes : ''}`;
 
         window.addEventListener('DOMContentLoaded', () => {
             loadPreset('restaurant');
-            activateControlTab('requests');
+            activateControlTab('brand');
         });
     </script>
 </body>
